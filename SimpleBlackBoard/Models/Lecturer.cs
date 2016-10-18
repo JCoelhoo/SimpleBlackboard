@@ -10,13 +10,13 @@ namespace SimpleBlackBoard.Models
     {
         public int Lecturer_ID { get; set; }
         public String Name { get; set; }
-        public int Role_ID { get; set; }   
         public String Email { get; set; }
         public String Password { get; set; }
 
     }
     public class LecturerContext : DbContext
     {
+        public LecturerContext() : base() { }
         public DbSet<Lecturer> Lecturers { get; set; }
     }
 }

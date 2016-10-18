@@ -16,6 +16,7 @@ namespace SimpleBlackBoard.Models
     }
     public class AssignmentContext : DbContext
     {
+        public AssignmentContext() : base() { }
         public DbSet<Assignment> Assingments { get; set; }
     }
 }
