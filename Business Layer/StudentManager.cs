@@ -10,8 +10,8 @@ namespace Business_Layer
 {
     public class StudentManager
     {
-        private StudentContext StudentContext;  //table
-        private DbSet<Student> Students; //for adding
+        //private BlackBoardContext BlackBoardContext;  //table
+        //private DbSet<Student> Students; //for adding
 
         public static List<Student> getStudentsByLecturerId(int Lecturer_ID)
         { 
