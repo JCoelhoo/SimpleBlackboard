@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBlackBoard.Models
 {
+    [Table("Lecturer")]
     public class Lecturer
     {
         [Key]

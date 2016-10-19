@@ -10,8 +10,30 @@ namespace Business_Layer
 {
     public class LecturerManager
     {
-        private LecturerContext LecturerContext;  //table
-        private DbSet<Lecturer> Lecturers; //for adding
+        public static int[] AllLecturerIds() //returns an array of all lecturer Id's
+        {
+            try
+            {
+                
+                using (var context = new LecturerContext())
+                {
+                    var lecturerIDList = (from lecturer in context.Lecturers
+                                          orderby lecturer.Lecturer_ID
+                                          select lecturer.Lecturer_ID).ToList();
+                    if(lecturerIDList!=null)
+                    {
+                        return lecturerIDList.ToArray();
+                    }
+                    return lecturerIDList.ToArray();
+                }
+            }
+            catch (Exception e)
+            {
+                //log error 
+                Console.Write(e);
+                return null;
+            }
+        }
         public static void AddLecturer() //for registration
         {
             //add try catch in controller

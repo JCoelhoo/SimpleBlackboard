@@ -22,6 +22,9 @@ namespace SimpleBlackBoard.Models
         public string Email { get; set; }
         [Column("Password")]
         public string Password { get; set; }
+        
+        [Column("Lecturer_ID")]
+        public int Lecturer_ID { get; set; }
 
     }
     public class StudentContext : DbContext

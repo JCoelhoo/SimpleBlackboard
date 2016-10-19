@@ -8,14 +8,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleBlackBoard.Models
 {
+    [Table("Assignment")]
     public class Assignment
     {
         [Key]
         [Column("Asst_ID")]
         public int Asst_ID { get; set; }
         [Column("Student_ID")]
+        [ForeignKey("Student_ID")]
         public int Student_ID { get; set; }
         [Column("Lecturer_ID")]
+        [ForeignKey("Lecturer_ID")]
         public int Lecturer_ID { get; set; }
         [Column("Grade")]
         public float Grade { get; set; }
