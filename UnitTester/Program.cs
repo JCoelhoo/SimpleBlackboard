@@ -14,19 +14,19 @@ namespace UnitTester
         {
 
             //1.Unit Testing of getStudentsByLecturerId
-            //GetStudentsByLecturer();
+            GetStudentsByLecturer();
 
             //2.Unit Testing of getLecturerList
-            //getLecturerIdList();
+            getLecturerIdList();
 
             //3.Unit testing of random lecturer
-            //rndmLec();
+            rndmLec();
 
             //4.Unit Testing of addStudent
-            //AddStudent();
+            AddStudent();
 
             //5.Unit testing of getStudentById
-            //getStudentbyID();
+            getStudentbyID();
 
         }
         public static void GetStudentsByLecturer()

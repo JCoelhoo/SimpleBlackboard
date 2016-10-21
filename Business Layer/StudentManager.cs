@@ -53,7 +53,7 @@ namespace Business_Layer
         public static Boolean AddStudent(Student studentObj, out string errorMessage) //for registration
         {
             //Do Validation in controller
-            Boolean checkEmail = checkExistingEmail(studentObj.Email,out errorMessage);
+            Boolean checkEmail = CheckExistingEmail(studentObj.Email,out errorMessage);
             if (checkEmail == false)
             {
                 try
