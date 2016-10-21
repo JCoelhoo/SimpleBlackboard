@@ -78,6 +78,7 @@ namespace Business_Layer
             else
             {
                 //Email Exists
+
                 return false; // didnt work
             }
         }
