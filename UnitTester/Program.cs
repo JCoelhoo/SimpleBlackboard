@@ -31,7 +31,7 @@ namespace UnitTester
         }
         public static void GetStudentsByLecturer()
         {
-            List<Student> test = StudentManager.getStudentsByLecturerId(1);
+            List<Student> test = StudentManager.GetStudentsByLecturerId(1);
             foreach(var t in test)
             {
                 Console.WriteLine(t.Student_ID+ " "+t.Name);
@@ -74,7 +74,7 @@ namespace UnitTester
 
         public static void getStudentbyID()
         {
-           Student test =  StudentManager.getStudentById(6);
+           Student test =  StudentManager.GetStudentById(6);
            Console.Write(test.Lecturer_ID);
            Console.Read();
         }

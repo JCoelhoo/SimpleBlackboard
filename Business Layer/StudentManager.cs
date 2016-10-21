@@ -13,7 +13,7 @@ namespace Business_Layer
         //private BlackBoardContext BlackBoardContext;  //table
         //private DbSet<Student> Students; //for adding
 
-        public static List<Student> getStudentsByLecturerId(int Lecturer_id)
+        public static List<Student> GetStudentsByLecturerId(int Lecturer_id)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Business_Layer
             int lecturerID_selected = rnd.Next(1, lecturerID_size+1); //generate random between min and max inclusive
             return lecturerIDArray[lecturerID_selected]; //return random lec id at location of rndm
         }
-        public static Student getStudentById(int Student_id)
+        public static Student GetStudentById(int Student_id)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Business_Layer
             }
         }
 
-        public static Boolean checkExistingEmail(String email,out string errorMessage)
+        public static Boolean CheckExistingEmail(String email,out string errorMessage)
         {
             try
             {
@@ -143,6 +143,26 @@ namespace Business_Layer
             {
                 errorMessage = "Database Error When Retrieving Email!";
                 return false; //db error
+            }
+        }
+
+        public static void UpdateUploaded(Assignment assignment, out string errorMessage)
+        {
+            try
+            {
+                using (var context = new StudentContext())
+                {
+                    var studentObj = (from student in context.Students
+                                      where student.Student_ID == assignment.Student_ID
+                                      select student).FirstOrDefault();
+                    studentObj.Uploaded = true;
+                    context.SaveChanges();
+                    errorMessage = "";
+                }
+            }
+            catch (Exception)
+            {
+                errorMessage = "Database Error";
             }
         }
     }
