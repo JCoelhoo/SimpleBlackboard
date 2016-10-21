@@ -34,18 +34,40 @@ namespace Business_Layer
                 return null;
             }
         }
-        public static void AddLecturer() //for registration
+        public static Boolean AddLecturer(Lecturer lecturer, out string errorMessage) //for registration
         {
+            errorMessage = "";
+            Boolean checkEmail = checkExistingEmail(lecturer.Email, out errorMessage);
+            if (checkEmail == false)
+            {
+                try
+                {
+                    using (var context = new LecturerContext())
+                    {
+                        context.Lecturers.Add(lecturer);
+                        context.SaveChanges();
+                        errorMessage = "";
+                        return true; //Worked
+                    }
+                }
+                catch (Exception e)
+                {
+                    errorMessage = "Database Problem";
+                    return false;
+                }
+            }
+            else
+            {
+                //Email Exists
+                return false; // didnt work
+            }
             //add try catch in controller
         }
+
         public static Lecturer getLecturerById(int Lecturer_ID)
         {
+
             return null;
         }
-        public static List<int> getLecturerIds()
-        {
-            return null;
-        }
-        
     }
 }

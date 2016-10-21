@@ -134,7 +134,7 @@ namespace Business_Layer
                         errorMessage = "Email already Exists!";
                         return true; //email exists
                     }
-                    errorMessage = "Email Doesn't Exist!";
+                    errorMessage = "";
                     return false; //email doesnt exist
                 }
             }
