@@ -24,6 +24,8 @@ namespace SimpleBlackBoard.Models
         public float Grade { get; set; }
         [Column("Feedback")]
         public String Feedback { get; set; }
+        [Column("Status_ID")]
+        public int Status_ID { get; set; }
     }
     public class AssignmentContext : DbContext
     {

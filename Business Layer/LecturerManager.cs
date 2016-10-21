@@ -66,8 +66,56 @@ namespace Business_Layer
 
         public static Lecturer getLecturerById(int Lecturer_ID)
         {
+            try
+            {
+                Lecturer returnedLecturer = new Lecturer();
+                using (var context = new LecturerContext())
+                {
+                    var lecturerResult = (from lecturer in context.Lecturers
+                                          where lecturer.Lecturer_ID == Lecturer_ID
+                                          select lecturer).FirstOrDefault();
+                    if (lecturerResult != null)
+                    {
+                        returnedLecturer.Email = lecturerResult.Email;
+                        returnedLecturer.Name = lecturerResult.Name;
+                        returnedLecturer.Lecturer_ID = lecturerResult.Lecturer_ID;
+                        returnedLecturer.Password = lecturerResult.Password;
+                        returnedLecturer.Lecturer_ID = lecturerResult.Lecturer_ID;
 
-            return null;
+                    }
+                    return returnedLecturer;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
+        }
+        public static Boolean checkExistingEmail(String email, out string errorMessage)
+        {
+            try
+            {
+
+                using (var context = new LecturerContext())
+                {
+                    var lecturerResult = (from lecturer in context.Lecturers
+                                         where lecturer.Email == email
+                                         select lecturer).FirstOrDefault();
+                    if (lecturerResult != null)
+                    {
+                        errorMessage = "Email already Exists!";
+                        return true; //email exists
+                    }
+                    errorMessage = "";
+                    return false; //email doesnt exist
+                }
+            }
+            catch (Exception e)
+            {
+                errorMessage = "Database Error When Retrieving Email!";
+                return false; //db error
+            }
         }
     }
 }
