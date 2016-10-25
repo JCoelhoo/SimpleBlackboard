@@ -20,10 +20,10 @@ namespace SimpleBlackBoard.Controllers
         // GET: Register
         [Route("LecturerRegister")]
         [HttpPost]
-        public ActionResult LecturerRegister(Lecturer l)
+        public ActionResult LecturerRegister(Lecturer lec)
         {
             string errorMessage;
-            if(!LecturerManager.AddLecturer(l, out errorMessage))
+            if(!LecturerManager.AddLecturer(lec, out errorMessage))
             {
                 return RedirectToAction("Register");
             }
@@ -32,10 +32,10 @@ namespace SimpleBlackBoard.Controllers
 
         [Route("StudentRegister")]
         [HttpPost]
-        public ActionResult StudentRegister(Student s)
+        public ActionResult StudentRegister(Student stu)
         {
             string errorMessage;
-            if (!StudentManager.AddStudent(s, out errorMessage))
+            if (!StudentManager.AddStudent(stu, out errorMessage))
             {
                 
                 return RedirectToAction("Register");

@@ -3,13 +3,14 @@
 @{
     ViewBag.Title = "Register";
 }
-
+<html>
+<body>
 <h2>Register</h2>
 
 @Html.ValidationSummary()
 
 <div id="studentSignup" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    @using (@Html.BeginForm("StudentRegister", "Register"))
+    @using (@Html.BeginForm("StudentRegister", "Register", FormMethod.Post))
     {
         <h1>Student Signup</h1>
         <div class="student-editor">
@@ -25,18 +26,19 @@
 </div>
 
 <div id="lecturerSignup" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-    @using (@Html.BeginForm("LecturerRegister", "Register"))
+    @using (@Html.BeginForm("LecturerRegister", "Register", FormMethod.Post))
     {
         <h1>Lecturer Signup</h1>
         <div class="lecturer-editor">
             @Html.EditorFor(lec => lec.Item2)
             <input type="submit" value="submit" />
         </div>
-        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+        <div style="border-top: 1px solid#888; padding-top:17px; font-size:85%">
             <a href="#" onClick="$('#lecturerSignup').hide(); $('#studentSignup').show()">
                 Are you a Student?
             </a>
         </div>
     }
 </div>
-
+</body>
+</html>
