@@ -15,7 +15,7 @@ namespace SimpleBlackBoard.Models
         [Column("Student_ID")]
         public int Student_ID { get; set; }
         [Column("Uploaded")]
-        public bool? Uploaded { get; set; }
+        public bool Uploaded { get; set; }
         [Column("Name")]
         public string Name { get; set; }
         [Column("Email")]

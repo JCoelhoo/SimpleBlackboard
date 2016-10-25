@@ -8,7 +8,7 @@ using SimpleBlackBoard.Models;
 using System.Web;
 using System.IO;
 
-namespace Business_Layer
+namespace SimpleBlackBoard.Business_Layer
 {
     public class AssignmentManager
     {

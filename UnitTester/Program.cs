@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleBlackBoard.Models;
 using System.Data.Entity;
-using Business_Layer;
+using SimpleBlackBoard.Business_Layer;
 namespace UnitTester
 {
     public class Program
@@ -14,20 +14,41 @@ namespace UnitTester
         {
 
             //1.Unit Testing of getStudentsByLecturerId
-            GetStudentsByLecturer();
+            //GetStudentsByLecturer();
 
             //2.Unit Testing of getLecturerList
-            getLecturerIdList();
+            //getLecturerIdList();
 
             //3.Unit testing of random lecturer
-            rndmLec();
+            //rndmLec();
 
             //4.Unit Testing of addStudent
-            AddStudent();
+            //AddStudent();
 
             //5.Unit testing of getStudentById
-            getStudentbyID();
+            //getStudentbyID();
 
+            //6. Add Lecturer
+            //AddLecturer();
+
+            //7. Get lecturer by id
+            //getLecturerByID();
+
+            //8. Add assignment
+            //AddAssignment();
+
+            //9.Grade Assignment
+            //gradeAssignment();
+            
+            //10. get assignment grade by id
+            //getAssignmentGradeById();
+            
+
+            //11. Update Uploaded
+            //working
+            
+            //12. Upload Assignement
+            //do later
         }
         public static void GetStudentsByLecturer()
         {
@@ -65,7 +86,7 @@ namespace UnitTester
             newStudent.Name = "testInsert";
             newStudent.Email = "lala@lala.com";
             newStudent.Password = "231231";
-            newStudent.Uploaded = null;
+            newStudent.Uploaded = false;
             //newStudent.Lecturer_ID = 3;
             bool b = StudentManager.AddStudent(newStudent, out k);
             Console.Write(b +" "+k);
@@ -77,6 +98,54 @@ namespace UnitTester
            Student test =  StudentManager.GetStudentById(6);
            Console.Write(test.Lecturer_ID);
            Console.Read();
+        }
+        public static void AddLecturer()
+        {
+            String k = "";
+            Lecturer lec = new Lecturer();
+            lec.Email = "lec@lec.lec";
+            lec.Name = "inserting through code 2";
+            lec.Password = "ebola2";
+            bool b = LecturerManager.AddLecturer(lec,out k);
+            Console.Write(b + " " + k);
+            Console.Read();
+        }
+        public static void getLecturerByID()
+        {
+            Lecturer lec = LecturerManager.getLecturerById(2);
+            Console.Write(lec.Lecturer_ID+" "+ lec.Name);
+            Console.Read();
+
+        }
+        public static void AddAssignment()
+        {
+            String k = "";
+            Assignment ass = new Assignment();
+            ass.Lecturer_ID = 2;
+            ass.Student_ID = 2;
+            ass.Status_ID = 1;
+            
+            Boolean b = AssignmentManager.AddAssigment(ass,out k);
+            Console.Write(b + " " + k);
+            Console.Read();
+        }
+        public static void gradeAssignment()
+        {
+            string k = "";
+            string feedback = "This is a unit test";
+            float grade = 90;
+            Assignment ass = new Assignment();
+            ass.Feedback = feedback;
+            ass.Grade = grade;
+            ass.Asst_ID = 1;
+            AssignmentManager.GradeAssignment(3, ass, out k);
+            Console.Read();
+        }
+        public static void getAssignmentGradeById()
+        {
+            Assignment ass = AssignmentManager.GetAssignmentGradeById(1);
+            Console.Write(ass.Grade + " " + ass.Feedback);
+            Console.Read();
         }
 
 
