@@ -190,7 +190,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Register\StudentRegister.cshtml" />
+    <Content Include="Views\Register\LecturerRegister.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

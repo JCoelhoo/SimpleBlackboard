@@ -10,9 +10,16 @@ namespace SimpleBlackBoard.Controllers
 {
     public class RegisterController : Controller
     {
-        [Route("Register")]
+        [Route("LecturerRegister")]
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult LecturerRegister()
+        {
+            return View();
+        }
+
+        [Route("StudentRegister")]
+        [HttpGet]
+        public ActionResult StudentRegister()
         {
             return View();
         }
@@ -25,7 +32,7 @@ namespace SimpleBlackBoard.Controllers
             string errorMessage;
             if(!LecturerManager.AddLecturer(lec, out errorMessage))
             {
-                return RedirectToAction("Register");
+                return RedirectToAction("LecturerRegister");
             }
             return RedirectToAction("HomeL");
         }
@@ -38,7 +45,7 @@ namespace SimpleBlackBoard.Controllers
             if (!StudentManager.AddStudent(stu, out errorMessage))
             {
                 
-                return RedirectToAction("Register");
+                return RedirectToAction("StudentRegister");
             }
             return RedirectToAction("HomeS");
         }
