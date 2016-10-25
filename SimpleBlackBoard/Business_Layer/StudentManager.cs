@@ -88,7 +88,7 @@ namespace SimpleBlackBoard.Business_Layer
         {
             int lecturerID_size = lecturerIDArray.Length; //size of array (aka number of ids)
             Random rnd = new Random();
-            int lecturerID_selected = rnd.Next(1, lecturerID_size+1); //generate random between min and max inclusive
+            int lecturerID_selected = rnd.Next(1, lecturerID_size); //generate random between min and max inclusive
             return lecturerIDArray[lecturerID_selected]; //return random lec id at location of rndm
         }
         public static Student GetStudentById(int Student_id)
