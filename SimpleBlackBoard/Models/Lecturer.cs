@@ -17,12 +17,15 @@ namespace SimpleBlackBoard.Models
         [HiddenInput(DisplayValue = false)]
         public int Lecturer_ID { get; set; }
         [Column("Name")]
+        [Required(AllowEmptyStrings = false)]
         public String Name { get; set; }
         [Column("Email")]
         [DataType(DataType.EmailAddress)]
+        [Required(AllowEmptyStrings = false)]
         public String Email { get; set; }
         [DataType(DataType.Password)]
         [Column("Password")]
+        [Required(AllowEmptyStrings = false)]
         public String Password { get; set; }
 
     }

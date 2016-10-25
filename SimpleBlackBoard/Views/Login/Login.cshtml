@@ -1,10 +1,30 @@
-﻿
+﻿@model SimpleBlackBoard.Models.Login
 
 @{
     ViewBag.Title = "Login";
 }
 
 <h2>Login</h2>
+
+
+
+
+@using (@Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+        <div class="login-editor">
+            @Html.EditorForModel()
+            <br />
+            <input type="submit" value="Submit" />
+        </div>
+}
+<br />
+@if (@ViewBag.Error != "" && @ViewBag.Error != null)
+{
+    <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> @ViewBag.Error
+    </div>
+} 
 
 <a href="StudentRegister">
     Sign Up Here

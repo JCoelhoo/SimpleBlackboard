@@ -1,4 +1,5 @@
-﻿using SimpleBlackBoard.Models;
+﻿using SimpleBlackBoard.Business_Layer;
+using SimpleBlackBoard.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,20 +18,26 @@ namespace SimpleBlackBoard.Controllers
         [Route("Login")]
         [Route("")]
         [HttpGet]
-        public ViewResult Login()
+        public ViewResult Login(string errorMessage)
         {
+            ViewBag.Error = errorMessage;
             return View();
         }
 
         [Route("Login")]
         [Route("")]
         [HttpPost]
-        public ActionResult Login(Student s)
+        public ActionResult Login(Login login)
         {
-            /*string errorMessage;
-            if (!StudentManager.AddStudent(s, out errorMessage))*/
-
-            return RedirectToAction("student");
+            string errorMessage;
+            StudentManager.CheckExistingEmail(login.Email, out errorMessage);
+            errorMessage = "aa";
+            if(!errorMessage.Equals("") || errorMessage!=null)
+            {
+                ViewBag.Error = errorMessage;
+                return RedirectToAction("Login", new { errorMessage = errorMessage });
+            } 
+            return RedirectToAction("Home");
         }
 
         // 

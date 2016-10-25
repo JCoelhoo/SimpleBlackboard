@@ -12,27 +12,29 @@ namespace SimpleBlackBoard.Controllers
     {
         [Route("LecturerRegister")]
         [HttpGet]
-        public ActionResult LecturerRegister()
+        public ActionResult LecturerRegister(string errorMessage)
         {
+            ViewBag.Error = errorMessage;
             return View();
         }
 
         [Route("StudentRegister")]
         [HttpGet]
-        public ActionResult StudentRegister()
+        public ActionResult StudentRegister(string errorMessage)
         {
+            ViewBag.Error = errorMessage;
             return View();
         }
 
-        // GET: Register
         [Route("LecturerRegister")]
         [HttpPost]
         public ActionResult LecturerRegister(Lecturer lec)
         {
-            string errorMessage;
-            if(!LecturerManager.AddLecturer(lec, out errorMessage))
+            string errorMessage = "aa";
+            if (!LecturerManager.AddLecturer(lec, out errorMessage))
             {
-                return RedirectToAction("LecturerRegister");
+                ViewBag.Error = errorMessage;
+                return RedirectToAction("LecturerRegister", new { errorMessage = errorMessage });
             }
             return RedirectToAction("HomeL");
         }
@@ -41,11 +43,11 @@ namespace SimpleBlackBoard.Controllers
         [HttpPost]
         public ActionResult StudentRegister(Student stu)
         {
-            string errorMessage;
+            string errorMessage = "aa";
             if (!StudentManager.AddStudent(stu, out errorMessage))
             {
-                
-                return RedirectToAction("StudentRegister");
+                ViewBag.Error = errorMessage;
+                return RedirectToAction("StudentRegister", new { errorMessage = errorMessage });
             }
             return RedirectToAction("HomeS");
         }

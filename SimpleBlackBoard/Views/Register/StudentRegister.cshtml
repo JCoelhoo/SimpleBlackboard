@@ -13,10 +13,28 @@
         <h1>Student Signup</h1>
         <div class="student-editor">
             @Html.EditorForModel()
-            <input type="submit" value="submit" />
+            <br />
+
+            <input type="submit" value="Submit" />
+
+            @if (@ViewBag.Error != "" && @ViewBag.Error != null)
+            {
+                <br />
+
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> @ViewBag.Error
+                </div>
+            }
+            <br />
+
             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
                 <a href="LecturerRegister">
                     Are you a Lecturer?
+                </a>
+                <br /><br />
+                <a href="/">
+                    Log in
                 </a>
             </div>
         </div>

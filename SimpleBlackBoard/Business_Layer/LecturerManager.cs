@@ -52,8 +52,6 @@ namespace SimpleBlackBoard.Business_Layer
                 }
                 catch (Exception e)
                 {
-                    Console.Write(e.Message);
-                    Console.ReadLine();
                     errorMessage = "Database Problem";
                     return false;
                 }

@@ -20,12 +20,15 @@ namespace SimpleBlackBoard.Models
         [Column("Uploaded")]
         public bool Uploaded { get; set; }
         [Column("Name")]
+        [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
         [Column("Email")]
         [DataType(DataType.EmailAddress)]
+        [Required(AllowEmptyStrings = false)]
         public string Email { get; set; }
         [Column("Password")]
         [DataType(DataType.Password)]
+        [Required(AllowEmptyStrings = false)]
         public string Password { get; set; }
         [HiddenInput(DisplayValue = false)]
         [Column("Lecturer_ID")]
