@@ -29,7 +29,7 @@ namespace UnitTester
             //getStudentbyID();
 
             //6. Add Lecturer
-            //AddLecturer();
+            AddLecturer();
 
             //7. Get lecturer by id
             //getLecturerByID();

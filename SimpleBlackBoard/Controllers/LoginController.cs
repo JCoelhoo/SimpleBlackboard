@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleBlackBoard.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +16,21 @@ namespace SimpleBlackBoard.Controllers
         //}
         [Route("Login")]
         [Route("")]
+        [HttpGet]
         public ViewResult Login()
         {
             return View();
+        }
+
+        [Route("Login")]
+        [Route("")]
+        [HttpPost]
+        public ActionResult Login(Student s)
+        {
+            /*string errorMessage;
+            if (!StudentManager.AddStudent(s, out errorMessage))*/
+
+            return RedirectToAction("student");
         }
 
         // 
