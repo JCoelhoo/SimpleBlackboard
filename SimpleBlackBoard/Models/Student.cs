@@ -18,26 +18,28 @@ namespace SimpleBlackBoard.Models
         public int Student_ID { get; set; }
         [HiddenInput(DisplayValue = false)]
         [Column("Uploaded")]
+        [Required]
         public bool Uploaded { get; set; }
         [Column("Name")]
+        [MaxLength(50)]
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
         [Column("Email")]
+        [MaxLength(50)]
         [DataType(DataType.EmailAddress)]
         [Required(AllowEmptyStrings = false)]
         public string Email { get; set; }
         [Column("Password")]
+        [MaxLength(50)]
         [DataType(DataType.Password)]
         [Required(AllowEmptyStrings = false)]
         public string Password { get; set; }
         [HiddenInput(DisplayValue = false)]
         [Column("Lecturer_ID")]
-        public int Lecturer_ID { get; set; }
+        [ForeignKey("Lecturer")]
+        public virtual int? Lecturer_ID { get; set; }
 
+        public virtual Lecturer Lecturer { get; set; }
     }
-    public class StudentContext : DbContext
-    {
-        public StudentContext() : base("name=SimpleBlackBoard") { }
-        public DbSet<Student> Students { get; set; }
-    }
+  
 }

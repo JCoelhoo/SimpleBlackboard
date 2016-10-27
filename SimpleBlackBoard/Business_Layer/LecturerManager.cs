@@ -15,7 +15,7 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
                 
-                using (var context = new LecturerContext())
+                using (var context = new SchoolContext())
                 {
                     var lecturerIDList = (from lecturer in context.Lecturers
                                           orderby lecturer.Lecturer_ID
@@ -42,7 +42,7 @@ namespace SimpleBlackBoard.Business_Layer
             {
                 try
                 {
-                    using (var context = new LecturerContext())
+                    using (var context = new SchoolContext())
                     {
                         context.Lecturers.Add(lecturer);
                         context.SaveChanges();
@@ -69,7 +69,7 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
                 Lecturer returnedLecturer = new Lecturer();
-                using (var context = new LecturerContext())
+                using (var context = new SchoolContext())
                 {
                     var lecturerResult = (from lecturer in context.Lecturers
                                           where lecturer.Lecturer_ID == Lecturer_ID
@@ -97,7 +97,7 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
 
-                using (var context = new LecturerContext())
+                using (var context = new SchoolContext())
                 {
                     var lecturerResult = (from lecturer in context.Lecturers
                                          where lecturer.Email == email

@@ -16,7 +16,7 @@ namespace SimpleBlackBoard
             //AreaRegistration.RegisterAllAreas();
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             RouteTable.Routes.MapMvcAttributeRoutes();
-            Database.SetInitializer<StudentContext>(null);
+            //Database.SetInitializer<SchoolContext>(null);
         }
     }
 }

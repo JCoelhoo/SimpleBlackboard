@@ -18,7 +18,7 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
                 List<Student> students = new List<Student>();
-                using (var context = new StudentContext())
+                using (var context = new SchoolContext())
                 {
                     var studentListResult = (from student in context.Students
                                               orderby student.Student_ID
@@ -60,7 +60,7 @@ namespace SimpleBlackBoard.Business_Layer
                 {
                     int[] allLecturerIds = LecturerManager.AllLecturerIds(); //get all Lecturer Id's in array
                     int selectedLecturerID = AssignRandomLecturer(allLecturerIds); //call helper method to randomly assign a lecturer to the student
-                    using (var context = new StudentContext())
+                    using (var context = new SchoolContext())
                     {
                         studentObj.Lecturer_ID = selectedLecturerID; //assign random lecturer
                         context.Students.Add(studentObj);
@@ -96,7 +96,7 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
                 Student returnedStudent = new Student();
-                using (var context = new StudentContext())
+                using (var context = new SchoolContext())
                 {
                     var studentResult = (from student in context.Students
                                      where student.Student_ID == Student_id
@@ -125,7 +125,7 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
                 
-                using (var context = new StudentContext())
+                using (var context = new SchoolContext())
                 {
                     var studentResult = (from student in context.Students
                                          where student.Email == email
@@ -150,7 +150,7 @@ namespace SimpleBlackBoard.Business_Layer
         {
             try
             {
-                using (var context = new StudentContext())
+                using (var context = new SchoolContext())
                 {
                     var studentObj = (from student in context.Students
                                       where student.Student_ID == assignment.Student_ID

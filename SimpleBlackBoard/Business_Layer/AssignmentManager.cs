@@ -17,9 +17,9 @@ namespace SimpleBlackBoard.Business_Layer
         {
             try
             {
-                using (var context = new AssignmentContext())
+                using (var context = new SchoolContext())
                 {
-                    var editAssingment = (from assignment in context.Assingments
+                    var editAssingment = (from assignment in context.Assignments
                                           where assignment.Asst_ID == Assignment.Asst_ID
                                           select assignment).FirstOrDefault();
                     editAssingment.Feedback = Assignment.Feedback;
@@ -79,9 +79,9 @@ namespace SimpleBlackBoard.Business_Layer
             try
             {
                 Assignment assignmentReturn = new Assignment();
-                using (var context = new AssignmentContext())
+                using (var context = new SchoolContext())
                 {
-                    var assignmentResult = (from assignment in context.Assingments
+                    var assignmentResult = (from assignment in context.Assignments
                                           where assignment.Asst_ID == Assignment_ID
                                           select assignment).FirstOrDefault();
 
@@ -114,9 +114,9 @@ namespace SimpleBlackBoard.Business_Layer
             {
                 try
                 {
-                    using (var context = new AssignmentContext())
+                    using (var context = new SchoolContext())
                     {
-                        context.Assingments.Add(assignment);
+                        context.Assignments.Add(assignment);
                         context.SaveChanges();
                         errorMessage = "";
                         return true;
@@ -130,11 +130,11 @@ namespace SimpleBlackBoard.Business_Layer
                 }
             }
         }
-        public static Boolean checkUploaded(int student_id,out string errorMessage)
+        public static Boolean checkUploaded(int? student_id,out string errorMessage)
         {
             try
             {
-                using (var context = new StudentContext())
+                using (var context = new SchoolContext())
                 {
                     var check = (from student in context.Students
                                  where student.Student_ID == student_id &&

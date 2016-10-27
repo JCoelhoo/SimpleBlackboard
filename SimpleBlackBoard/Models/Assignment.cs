@@ -12,22 +12,28 @@ namespace SimpleBlackBoard.Models
     public class Assignment
     {
         [Key]
+        [Required]
         [Column("Asst_ID")]
         public int Asst_ID { get; set; }
+        
+        [ForeignKey("Student")]
         [Column("Student_ID")]
-        public int Student_ID { get; set; }
+        public virtual int? Student_ID { get; set; }
+        
         [Column("Lecturer_ID")]
-        public int Lecturer_ID { get; set; }
+        [ForeignKey("Lecturer")]
+        public virtual int? Lecturer_ID { get; set; }
         [Column("Grade")]
         public double? Grade { get; set; }
         [Column("Feedback")]
+        [MaxLength(200)]
         public String Feedback { get; set; }
+        [Required]
         [Column("Status_ID")]
         public int Status_ID { get; set; }
+
+        public virtual Student Student { get; set; }
+        public virtual Lecturer Lecturer { get; set; }
     }
-    public class AssignmentContext : DbContext
-    {
-        public AssignmentContext() : base("name=SimpleBlackBoard") { }
-        public DbSet<Assignment> Assingments { get; set; }
-    }
+   
 }

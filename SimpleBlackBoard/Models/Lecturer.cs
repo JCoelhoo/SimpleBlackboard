@@ -17,21 +17,20 @@ namespace SimpleBlackBoard.Models
         [HiddenInput(DisplayValue = false)]
         public int Lecturer_ID { get; set; }
         [Column("Name")]
+        [MaxLength(50)]
         [Required(AllowEmptyStrings = false)]
         public String Name { get; set; }
         [Column("Email")]
+        [MaxLength(50)]
         [DataType(DataType.EmailAddress)]
         [Required(AllowEmptyStrings = false)]
         public String Email { get; set; }
         [DataType(DataType.Password)]
         [Column("Password")]
+        [MaxLength(50)]
         [Required(AllowEmptyStrings = false)]
         public String Password { get; set; }
 
     }
-    public class LecturerContext : DbContext
-    {
-        public LecturerContext() : base("name=SimpleBlackBoard") { }
-        public DbSet<Lecturer> Lecturers { get; set; }
-    }
+   
 }
