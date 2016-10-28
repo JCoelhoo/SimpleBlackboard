@@ -29,7 +29,7 @@ namespace UnitTester
             //getStudentbyID();
 
             //6. Add Lecturer
-            AddLecturer();
+            //AddLecturer();
 
             //7. Get lecturer by id
             //getLecturerByID();
@@ -39,16 +39,19 @@ namespace UnitTester
 
             //9.Grade Assignment
             //gradeAssignment();
-            
+
             //10. get assignment grade by id
             //getAssignmentGradeById();
-            
+
 
             //11. Update Uploaded
             //working
-            
+
             //12. Upload Assignement
             //do later
+
+            //13 CheckGraded
+            checkGraded();
         }
         public static void GetStudentsByLecturer()
         {
@@ -103,9 +106,9 @@ namespace UnitTester
         {
             String k = "";
             Lecturer lec = new Lecturer();
-            lec.Email = "lec@lec.lec";
+            lec.Email = "lala@lala.com";
             lec.Name = "inserting through code 2";
-            lec.Password = "ebola2";
+            lec.Password = "ebola3";
             bool b = LecturerManager.AddLecturer(lec,out k);
             Console.Write(b + " " + k);
             Console.Read();
@@ -121,8 +124,8 @@ namespace UnitTester
         {
             String k = "";
             Assignment ass = new Assignment();
-            ass.Lecturer_ID = 2;
-            ass.Student_ID = 2;
+            ass.Lecturer_ID = 1;
+            ass.Student_ID = 1;
             ass.Status_ID = 1;
             
             Boolean b = AssignmentManager.AddAssigment(ass,out k);
@@ -138,7 +141,7 @@ namespace UnitTester
             ass.Feedback = feedback;
             ass.Grade = grade;
             ass.Asst_ID = 1;
-            AssignmentManager.GradeAssignment(3, ass, out k);
+            AssignmentManager.GradeAssignment(1, ass, out k);
             Console.Read();
         }
         public static void getAssignmentGradeById()
@@ -147,6 +150,13 @@ namespace UnitTester
             Console.Write(ass.Grade + " " + ass.Feedback);
             Console.Read();
         }
+        public static void checkGraded()
+        {
+            string k = "";
+            Boolean test = AssignmentManager.checkGraded(1, out k);
+            Console.Write(test + " " + k);
+        }
+        
 
 
     }

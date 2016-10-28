@@ -37,7 +37,7 @@ namespace SimpleBlackBoard.Business_Layer
         public static Boolean AddLecturer(Lecturer lecturer, out string errorMessage) //for registration
         {
             errorMessage = "";
-            Boolean checkEmail = checkExistingEmail(lecturer.Email, out errorMessage);
+            Boolean checkEmail = CommonManager.CheckExistingEmail(lecturer.Email, out errorMessage);
             if (checkEmail == false)
             {
                 try
@@ -92,30 +92,6 @@ namespace SimpleBlackBoard.Business_Layer
             }
             
         }
-        public static Boolean checkExistingEmail(String email, out string errorMessage)
-        {
-            try
-            {
-
-                using (var context = new SchoolContext())
-                {
-                    var lecturerResult = (from lecturer in context.Lecturers
-                                         where lecturer.Email == email
-                                         select lecturer).FirstOrDefault();
-                    if (lecturerResult != null)
-                    {
-                        errorMessage = "Email already Exists!";
-                        return true; //email exists
-                    }
-                    errorMessage = "";
-                    return false; //email doesnt exist
-                }
-            }
-            catch (Exception e)
-            {
-                errorMessage = "Database Error When Retrieving Email!";
-                return false; //db error
-            }
-        }
+        
     }
 }
