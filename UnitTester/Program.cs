@@ -153,7 +153,7 @@ namespace UnitTester
         public static void checkGraded()
         {
             string k = "";
-            Boolean test = AssignmentManager.checkGraded(1, out k);
+            Boolean test = AssignmentManager.CheckGraded(1, out k);
             Console.Write(test + " " + k);
         }
         

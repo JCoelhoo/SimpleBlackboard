@@ -156,7 +156,7 @@ namespace SimpleBlackBoard.Business_Layer
                 return false;
             }
         }
-        public static Boolean checkGraded(int Student_ID,out string errorMessage)
+        public static Boolean CheckGraded(int Student_ID,out string errorMessage)
         {
             try
             {

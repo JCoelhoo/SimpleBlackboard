@@ -18,8 +18,8 @@ namespace SimpleBlackBoard.Controllers
         {
             string errorMessage;
             //id from session?
-            ViewBag.Uploaded = AssignmentManager.CheckUploaded(1, out errorMessage);
-            ViewBag.Evaluated = AssignmentManager.CheckEvaluated(1, out errorMessage);
+            ViewBag.Uploaded = AssignmentManager.CheckUploaded(2, out errorMessage);
+            ViewBag.Evaluated = AssignmentManager.CheckGraded(2, out errorMessage);
             return View();
         }
 
@@ -27,7 +27,8 @@ namespace SimpleBlackBoard.Controllers
         [HttpGet]
         public ActionResult Lecturer()
         {
-            ViewBag.Assignments = new ArrayList { new Assignment { Asst_ID = 1, Lecturer_ID = 0, Student_ID = 2 }, new Assignment { Asst_ID = 1, Lecturer_ID = 0, Student_ID = 54 } };
+            string errorMessage;
+            ViewBag.Assignments = AssignmentManager.GetAssignmentsByLecturerId(1, out errorMessage);
             return View();
         }
     }
