@@ -106,7 +106,7 @@ namespace SimpleBlackBoard.Business_Layer
 
         public static Boolean AddAssigment(Assignment assignment, out string errorMessage)
         {
-            if (checkUploaded(assignment.Student_ID, out errorMessage) == true)
+            if (CheckUploaded(assignment.Student_ID, out errorMessage) == true)
             {
                 return false;
             }
@@ -130,7 +130,7 @@ namespace SimpleBlackBoard.Business_Layer
                 }
             }
         }
-        public static Boolean checkUploaded(int? student_id,out string errorMessage)
+        public static Boolean CheckUploaded(int? student_id,out string errorMessage)
         {
             try
             {

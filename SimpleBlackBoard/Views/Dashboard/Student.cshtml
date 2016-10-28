@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Student";
+}
+<div class="container">
+    <h2>Student Dashboard</h2>
+
+    @if (@ViewBag.Uploaded)
+    {
+        <button type="button" class="btn btn-primary disabled">Upload</button>
+        <span class="help-inline">Already uploaded</span>
+    }
+    else {
+        <button type="button" class="btn btn-primary">Upload</button>
+    }
+
+    <br /> <br />
+    
+    @if (@ViewBag.Evaluated)
+    {
+        <button type="button" class="btn btn-primary disabled">View assignment</button>
+    }
+    else {
+        <button type="button" class="btn btn-primary">View assignment</button>
+        <span class="help-inline">Not yet evaluated</span>
+    }
+</div>

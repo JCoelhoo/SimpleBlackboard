@@ -169,6 +169,8 @@
     <Compile Include="Business_Layer\AssignmentManager.cs" />
     <Compile Include="Business_Layer\LecturerManager.cs" />
     <Compile Include="Business_Layer\StudentManager.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,6 +196,9 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Register\StudentRegister.cshtml" />
     <Content Include="Views\Register\LecturerRegister.cshtml" />
+    <Content Include="Views\Dashboard\Student.cshtml" />
+    <Content Include="Views\Dashboard\Lecturer.cshtml" />
+    <Content Include="Views\Grade\Grade.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

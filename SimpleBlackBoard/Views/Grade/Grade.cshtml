@@ -1,0 +1,15 @@
+﻿@model SimpleBlackBoard.Models.Assignment 
+@{
+    ViewBag.Title = "Grade";
+}
+
+<h2>Grade</h2>
+
+<div class="assignment-display">
+    @using (@Html.BeginForm("Grade", "Grade"))
+    {
+        @Html.EditorForModel(Model)
+        <input type="submit" value="Grade" />
+    }
+</div>
+
