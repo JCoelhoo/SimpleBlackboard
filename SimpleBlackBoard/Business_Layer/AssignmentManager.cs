@@ -181,5 +181,31 @@ namespace SimpleBlackBoard.Business_Layer
                 return false;
             }
         }
+        public static List<Assignment> getAssignmentsByLecturerId(int Lecturer_ID,out string errorMessage)
+        {
+            try
+            {
+                using (var context = new SchoolContext())
+                {
+                    var assignments = (from asst in context.Assignments
+                                       orderby asst.Student_ID
+                                       where asst.Lecturer_ID == Lecturer_ID
+                                       select asst).ToList();
+                    if(assignments!=null)
+                    {
+                        errorMessage = "";
+                        return assignments;
+                    }
+                    errorMessage = "No assignments available for this lecturer";
+                    return assignments;
+                }
+                
+            }
+            catch (Exception)
+            {
+                errorMessage = "Database Error";
+                return null;
+            }
+        }
     }
 }

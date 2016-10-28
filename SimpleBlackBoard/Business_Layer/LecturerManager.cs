@@ -19,12 +19,12 @@ namespace SimpleBlackBoard.Business_Layer
                 {
                     var lecturerIDList = (from lecturer in context.Lecturers
                                           orderby lecturer.Lecturer_ID
-                                          select lecturer.Lecturer_ID).ToList();
+                                          select lecturer.Lecturer_ID).ToArray();
                     if(lecturerIDList!=null)
                     {
-                        return lecturerIDList.ToArray();
+                        return lecturerIDList;
                     }
-                    return lecturerIDList.ToArray();
+                    return lecturerIDList;
                 }
             }
             catch (Exception e)
