@@ -6,6 +6,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using System.ComponentModel;
 
 namespace SimpleBlackBoard.Models
 {
@@ -30,7 +31,11 @@ namespace SimpleBlackBoard.Models
         [MaxLength(50)]
         [Required(AllowEmptyStrings = false)]
         public String Password { get; set; }
-
+        [HiddenInput(DisplayValue = false)]
+        [Column("Role_ID")]
+        [Required]
+        [DefaultValue("true")]
+        public bool Role_ID { get; set; }
     }
    
 }
