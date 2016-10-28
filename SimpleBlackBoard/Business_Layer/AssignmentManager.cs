@@ -156,5 +156,30 @@ namespace SimpleBlackBoard.Business_Layer
                 return false;
             }
         }
+        public static Boolean checkGraded(int Student_ID,out string errorMessage)
+        {
+            try
+            {
+                using (var context = new SchoolContext())
+                {
+                    var check = (from asst in context.Assignments
+                                 where asst.Student_ID == Student_ID  
+                                 select asst).FirstOrDefault();
+
+                    if (check.Grade !=null)
+                    {
+                        errorMessage = "";
+                        return true;
+                    }
+                    errorMessage = "Your assignment isn't yet graded!";
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                errorMessage = "Database Problem "+e.Message;
+                return false;
+            }
+        }
     }
 }

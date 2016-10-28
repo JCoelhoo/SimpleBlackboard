@@ -30,7 +30,7 @@ namespace SimpleBlackBoard.Controllers
         public ActionResult Login(Login login)
         {
             string errorMessage;
-            StudentManager.CheckExistingEmail(login.Email, out errorMessage);
+            CommonManager.CheckExistingEmail(login.Email, out errorMessage);
             errorMessage = "aa";
             if(!errorMessage.Equals("") || errorMessage!=null)
             {

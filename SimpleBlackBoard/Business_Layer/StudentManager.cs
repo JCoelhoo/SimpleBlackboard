@@ -53,7 +53,7 @@ namespace SimpleBlackBoard.Business_Layer
         public static Boolean AddStudent(Student studentObj, out string errorMessage) //for registration
         {
             //Do Validation in controller
-            Boolean checkEmail = CheckExistingEmail(studentObj.Email,out errorMessage);
+            Boolean checkEmail = CommonManager.CheckExistingEmail(studentObj.Email,out errorMessage);
             if (checkEmail == false)
             {
                 try
@@ -88,7 +88,7 @@ namespace SimpleBlackBoard.Business_Layer
         {
             int lecturerID_size = lecturerIDArray.Length; //size of array (aka number of ids)
             Random rnd = new Random();
-            int lecturerID_selected = rnd.Next(1, lecturerID_size); //generate random between min and max inclusive
+            int lecturerID_selected = rnd.Next(0, lecturerID_size); //generate random between min and max inclusive
             return lecturerIDArray[lecturerID_selected]; //return random lec id at location of rndm
         }
         public static Student GetStudentById(int Student_id)
@@ -120,31 +120,7 @@ namespace SimpleBlackBoard.Business_Layer
             }
         }
 
-        public static Boolean CheckExistingEmail(String email,out string errorMessage)
-        {
-            try
-            {
-                
-                using (var context = new SchoolContext())
-                {
-                    var studentResult = (from student in context.Students
-                                         where student.Email == email
-                                         select student).FirstOrDefault();
-                    if (studentResult != null)
-                    {
-                        errorMessage = "Email already Exists!";
-                        return true; //email exists
-                    }
-                    errorMessage = "";
-                    return false; //email doesnt exist
-                }
-            }
-            catch (Exception e)
-            {
-                errorMessage = "Database Error When Retrieving Email!";
-                return false; //db error
-            }
-        }
+        
 
         public static void UpdateUploaded(Assignment assignment, out string errorMessage)
         {
