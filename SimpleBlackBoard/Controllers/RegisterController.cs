@@ -30,13 +30,13 @@ namespace SimpleBlackBoard.Controllers
         [HttpPost]
         public ActionResult LecturerRegister(Lecturer lec)
         {
-            string errorMessage = "aa";
+            string errorMessage;
             if (!LecturerManager.AddLecturer(lec, out errorMessage))
             {
                 ViewBag.Error = errorMessage;
                 return RedirectToAction("LecturerRegister", new { errorMessage = errorMessage });
             }
-            return RedirectToAction("HomeL");
+            return RedirectToAction("Dashboard/Lecturer");
         }
 
         [Route("StudentRegister")]
@@ -49,7 +49,7 @@ namespace SimpleBlackBoard.Controllers
                 ViewBag.Error = errorMessage;
                 return RedirectToAction("StudentRegister", new { errorMessage = errorMessage });
             }
-            return RedirectToAction("HomeS");
+            return RedirectToAction("Dashboard/Student");
         }
     }
 }

@@ -23,6 +23,7 @@ namespace SimpleBlackBoard.Business_Layer
                                             select lecturer.Email;
 
                     var allResultSets = (studentResultSet.Concat(lecturerResultSet)).ToList();
+
                     foreach(var Email in allResultSets)
                     {
                         if(Email.Equals(email))

@@ -28,7 +28,7 @@ namespace SimpleBlackBoard.Controllers
         public ActionResult Lecturer()
         {
             string errorMessage;
-            ViewBag.Assignments = AssignmentManager.GetAssignmentsByLecturerId(1, out errorMessage);
+            ViewBag.Assignments = AssignmentManager.getAssignmentsByLecturerId(1, out errorMessage);
             return View();
         }
     }

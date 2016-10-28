@@ -29,15 +29,14 @@ namespace SimpleBlackBoard.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {
-            string errorMessage;
-            CommonManager.CheckExistingEmail(login.Email, out errorMessage);
-            errorMessage = "aa";
-            if(!errorMessage.Equals("") || errorMessage!=null)
-            {
-                ViewBag.Error = errorMessage;
-                return RedirectToAction("Login", new { errorMessage = errorMessage });
-            } 
+            string errorMessage = String.Empty;
+            //if(LecturerManager.Login())
             return RedirectToAction("Home");
+            //else (Student.Login()) 
+            return RedirectToAction("Home");
+
+            ViewBag.Error = errorMessage;
+            return RedirectToAction("Login", new { errorMessage = errorMessage });
         }
 
         // 
