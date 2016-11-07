@@ -30,21 +30,18 @@ namespace SimpleBlackBoard.Controllers
         public ActionResult Login(Login login)
         {
             string errorMessage = String.Empty;
-            //if(LecturerManager.Login())
-            return RedirectToAction("Home");
-            //else (Student.Login()) 
-            return RedirectToAction("Home");
+            //if(LecturerManager.Login()){
+                Session["IsStudent"] = false;
+                Session["Email"] = login.Email;
+                return RedirectToAction("Manager", "Dashboard");
+            //} else (Student.Login()) 
+                Session["IsStudent"] = true;
+                Session["Email"] = login.Email;
+                return RedirectToAction("Manager", "Dashboard");
+            //}
 
             ViewBag.Error = errorMessage;
             return RedirectToAction("Login", new { errorMessage = errorMessage });
-        }
-
-        // 
-        // GET: /HelloWorld/Welcome/ 
-        [Route("Welcome")]
-        public string Welcome()
-        {
-            return "This is the Welcome action method...";
         }
     }
 }

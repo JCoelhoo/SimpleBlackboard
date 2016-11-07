@@ -1,4 +1,5 @@
-﻿using SimpleBlackBoard.Models;
+﻿using SimpleBlackBoard.Business_Layer;
+using SimpleBlackBoard.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +17,9 @@ namespace SimpleBlackBoard
             //AreaRegistration.RegisterAllAreas();
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             RouteTable.Routes.MapMvcAttributeRoutes();
+            string errorMessage;
+            LecturerManager.AddLecturer(new Lecturer { Name = "Dr. John", Email = "j@g.com", Password = "johnny"}, out errorMessage);
+            StudentManager.AddStudent(new Student { Name = "Mary", Email = "m@g.com", Password = "mary" }, out errorMessage);
             //Database.SetInitializer<SchoolContext>(null);
         }
     }

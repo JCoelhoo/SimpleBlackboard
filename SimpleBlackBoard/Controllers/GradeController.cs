@@ -14,6 +14,9 @@ namespace SimpleBlackBoard.Controllers
         [Route("Grade/{id:int}")]
         public ActionResult Grade(int id)
         {
+            if (Session["IsStudent"] == null)
+                return View("Login");
+
             return View(new Assignment { Asst_ID = 1, Lecturer_ID = 0, Student_ID = 2 }); //AssignmentManager.GetAssignmentGradeById(id));
         }
     }

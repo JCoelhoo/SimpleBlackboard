@@ -12,24 +12,27 @@ namespace SimpleBlackBoard.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        [Route("Dashboard/Student")]
+        [Route("Dashboard")]
         [HttpGet]
-        public ActionResult Student()
+        public ActionResult Manager()
         {
             string errorMessage;
             //id from session?
-            ViewBag.Uploaded = AssignmentManager.CheckUploaded(2, out errorMessage);
-            ViewBag.Evaluated = AssignmentManager.CheckGraded(2, out errorMessage);
-            return View();
-        }
+            if (Session["IsStudent"] == null)
+                return View("Login");
 
-        [Route("Dashboard/Lecturer")]
-        [HttpGet]
-        public ActionResult Lecturer()
-        {
-            string errorMessage;
-            ViewBag.Assignments = AssignmentManager.getAssignmentsByLecturerId(1, out errorMessage);
-            return View();
+            if ((bool)Session["IsStudent"])
+            {
+                ViewBag.Uploaded = AssignmentManager.CheckUploaded(2, out errorMessage);
+                ViewBag.Evaluated = AssignmentManager.CheckGraded(2, out errorMessage);
+                return View("Student");
+            }
+            else
+            {
+                ViewBag.Assignments = AssignmentManager.getAssignmentsByLecturerId(1, out errorMessage);
+                return View("Lecturer");
+            }
+            
         }
     }
 }
