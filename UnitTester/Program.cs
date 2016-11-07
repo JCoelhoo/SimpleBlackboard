@@ -51,7 +51,7 @@ namespace UnitTester
             //do later
 
             //13 CheckGraded
-            checkGraded();
+            //checkGraded();
         }
         public static void GetStudentsByLecturer()
         {

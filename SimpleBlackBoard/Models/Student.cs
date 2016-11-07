@@ -6,6 +6,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using System.ComponentModel;
 
 namespace SimpleBlackBoard.Models
 {
@@ -38,6 +39,13 @@ namespace SimpleBlackBoard.Models
         [Column("Lecturer_ID")]
         [ForeignKey("Lecturer")]
         public virtual int? Lecturer_ID { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        [Column("Role_ID")]
+        [Required]
+        [DefaultValue("false")]
+        public bool Role_ID { get; set; } 
+
 
         public virtual Lecturer Lecturer { get; set; }
     }
