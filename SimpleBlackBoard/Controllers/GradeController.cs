@@ -12,12 +12,27 @@ namespace SimpleBlackBoard.Controllers
     {
         // GET: Grade
         [Route("Grade/{id:int}")]
+        [HttpGet]
         public ActionResult Grade(int id)
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
 
-            return View(new Assignment { Asst_ID = 1, Lecturer_ID = 0, Student_ID = 2 }); //AssignmentManager.GetAssignmentGradeById(id));
+            var assignment = AssignmentManager.GetAssignmentByStudentId(id);
+
+            ViewBag.Assignment = assignment;
+
+            ViewBag.Title = "Grade";
+
+            return View();
+        }
+
+        [Route("Grade")]
+        [HttpPost]
+        public ActionResult Grade(Assignment assignment)
+        {
+            assignment = assignment;
+            return null;
         }
     }
 }

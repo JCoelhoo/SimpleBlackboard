@@ -35,6 +35,7 @@ namespace SimpleBlackBoard.Models
 
         [Column("Feedback")]
         [MaxLength(200)]
+        [DataType(DataType.MultilineText)]
         public String Feedback { get; set; }
 
         [Required]

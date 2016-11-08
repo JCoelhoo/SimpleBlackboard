@@ -4,19 +4,25 @@
 }
 <div class="container">
     <h2>LecturerView</h2>
+    <br />
+    @if (Enumerable.Count(ViewBag.Assignments) == 0)
+    {
+        <h5>No assignments to grade!</h5>
+    }
+    else {
+        <ul class="list-group">
 
-    <ul class="list-group">
-        @foreach (var assignment in @ViewBag.Assignments)
-        {
-            <li class="list-group-item clearfix">
-                <p style="display:inline">Student ID: @assignment.Student_ID</p>
-                <form action="~Grade/@assignment.Student_ID" style="display:inline">
-                    <span class="pull-right">
-                        <button class="btn btn-default">Grade</button>
-                    </span>
-                </form>
-            </li>
-        }
-    </ul>
-
+            @foreach (var assignment in @ViewBag.Assignments)
+            {
+                <li class="list-group-item clearfix">
+                    <p style="display:inline">Student ID: @assignment.Student_ID</p>
+                    <form method="get" action="~/Grade/@assignment.Student_ID" style="display:inline">
+                        <span class="pull-right">
+                            <button class="btn btn-default">Grade</button>
+                        </span>
+                    </form>
+                </li>
+            }
+        </ul>
+    }
 </div>

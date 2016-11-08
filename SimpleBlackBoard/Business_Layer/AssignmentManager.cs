@@ -43,7 +43,7 @@ namespace SimpleBlackBoard.Business_Layer
                 if (AssignmentManager.AddAssigment(assignment, out errorMessage)==true)
                 {
                     var fileName = (assignment.Student_ID).ToString() + ".html";
-                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Assignments"), fileName);
+                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Assignments"), fileName);
                     file.SaveAs(path);
 
                     StudentManager.UpdateUploaded(assignment, out errorMessage);
@@ -192,6 +192,36 @@ namespace SimpleBlackBoard.Business_Layer
             catch (Exception)
             {
                 errorMessage = "Database Error";
+                return null;
+            }
+        }
+
+        public static Assignment GetAssignmentByStudentId(int id)
+        {
+            try
+            {
+                var returnAssig = new Assignment();
+                using (var context = new SchoolContext())
+                {
+                    var assignment = (from asst in context.Assignments
+                                       where asst.Student_ID == id
+                                       select asst).FirstOrDefault();
+
+                    if (assignment != null)
+                    {
+                        returnAssig.Asst_ID = assignment.Asst_ID;
+                        returnAssig.Feedback = assignment.Feedback;
+                        returnAssig.Grade = assignment.Grade;
+                        returnAssig.Lecturer_ID = assignment.Lecturer_ID;
+                        returnAssig.Student_ID = assignment.Student_ID;
+                        returnAssig.Status_ID = assignment.Status_ID;
+                    }
+                    return returnAssig;
+                }
+
+            }
+            catch (Exception)
+            {
                 return null;
             }
         }
