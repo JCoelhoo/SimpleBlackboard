@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("SimpleBlackBoard", "", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SimpleBlackBoard", "Manager", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -25,11 +25,11 @@
             </div>
             @if (Session["IsStudent"] != null)
             {
-                <a href="~/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
+                <a href="~/Logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a>
             }
             else
             {
-                <a href="~/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                <a href="~/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
             }
            </div>
     </div>

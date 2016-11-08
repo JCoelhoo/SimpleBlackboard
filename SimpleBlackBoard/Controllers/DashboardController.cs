@@ -75,5 +75,46 @@ namespace SimpleBlackBoard.Controllers
             //error message
             return RedirectToAction("Manager", new { message = "Assignment uploaded successfully", errorMessage = errorMessage });
         }
+
+        [Route("Dashboard/Grade/{id:int}")]
+        [HttpGet]
+        public ActionResult Grade(int id)
+        {
+            if (Session["IsStudent"] == null)
+                return RedirectToAction("Login", "Login");
+
+            ViewBag.Student_ID = id;
+
+            return View();
+        }
+
+        [Route("Dashboard/Grade")]
+        [HttpPost]
+        public ActionResult Grade(Assignment partialAssignment, int id)
+        {
+            var assignment = AssignmentManager.GetAssignmentByStudentId(id);
+            string errorMessage;
+
+            assignment.Feedback = partialAssignment.Feedback;
+            assignment.Grade = partialAssignment.Grade;
+
+            AssignmentManager.GradeAssignment((int)Session["Id"],
+                assignment,
+                out errorMessage);
+
+            return RedirectToAction("Manager", "Dashboard");
+        }
+
+        [Route("Dashboard/View")]
+        [HttpGet]
+        public ActionResult ViewGrade()
+        {
+            if (Session["IsStudent"] == null)
+                return RedirectToAction("Login", "Login");
+
+            var assignment = AssignmentManager.GetAssignmentByStudentId((int) Session["Id"]);
+
+            return View(assignment);
+        }
     }
 }

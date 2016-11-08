@@ -154,7 +154,7 @@ namespace SimpleBlackBoard.Business_Layer
                                  where asst.Student_ID == Student_ID  
                                  select asst).FirstOrDefault();
 
-                    if (check.Grade !=null)
+                    if (check.Grade != 0)
                     {
                         errorMessage = "";
                         return true;

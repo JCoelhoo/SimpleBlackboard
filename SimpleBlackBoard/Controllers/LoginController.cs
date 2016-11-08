@@ -31,7 +31,7 @@ namespace SimpleBlackBoard.Controllers
         public ActionResult Login(Login login)
         {
             if (Session["IsStudent"] != null)
-                return RedirectToAction("Dashboard", "Dashboard");
+                return RedirectToAction("Manager", "Dashboard");
 
             string errorMessage = String.Empty;
             var status = CommonManager.Login(login, out errorMessage);
@@ -55,7 +55,7 @@ namespace SimpleBlackBoard.Controllers
             return RedirectToAction("Login", new { errorMessage = ViewBag.Error });
         }
 
-        [Route("logout")]
+        [Route("Logout")]
         [HttpGet]
         public ActionResult Logout()
         {

@@ -11,14 +11,14 @@
         <span class="help-inline">Already uploaded</span>
     }
     else {
-        <a href="Dashboard/Upload" class="btn btn-primary" role="button" aria-pressed="true">Upload</a>
+        <a href="~/Dashboard/Upload" class="btn btn-primary" role="button" aria-pressed="true">Upload</a>
     }
 
     <br /> <br />
 
     @if (@ViewBag.Evaluated)
     {
-        <a href="Dashboard/Grade" class="btn btn-primary" role="button" aria-pressed="true">View assignment</a>
+        <a href="~/Dashboard/View" class="btn btn-primary" role="button" aria-pressed="true">View assignment</a>
     }
     else {
         <button type="button" class="btn btn-primary disabled">View assignment</button>

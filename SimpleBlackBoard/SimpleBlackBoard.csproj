@@ -199,8 +199,9 @@
     <Content Include="Views\Register\LecturerRegister.cshtml" />
     <Content Include="Views\Dashboard\Student.cshtml" />
     <Content Include="Views\Dashboard\Lecturer.cshtml" />
-    <Content Include="Views\Grade\Grade.cshtml" />
+    <Content Include="Views\Dashboard\Grade.cshtml" />
     <Content Include="Views\Dashboard\Upload.cshtml" />
+    <Content Include="Views\Dashboard\ViewGrade.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
