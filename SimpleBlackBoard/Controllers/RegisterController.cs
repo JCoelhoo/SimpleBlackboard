@@ -36,7 +36,8 @@ namespace SimpleBlackBoard.Controllers
                 ViewBag.Error = errorMessage;
                 return RedirectToAction("LecturerRegister", new { errorMessage = errorMessage });
             }
-            return RedirectToAction("Dashboard/Lecturer");
+            //return RedirectToAction("Dashboard/Lecturer");
+            return RedirectToAction("Login", "Login");
         }
 
         [Route("StudentRegister")]
@@ -49,7 +50,8 @@ namespace SimpleBlackBoard.Controllers
                 ViewBag.Error = errorMessage;
                 return RedirectToAction("StudentRegister", new { errorMessage = errorMessage });
             }
-            return RedirectToAction("Dashboard/Student");
+            //return RedirectToAction("Dashboard/Student");
+            return RedirectToAction("Login","Login");
         }
     }
 }

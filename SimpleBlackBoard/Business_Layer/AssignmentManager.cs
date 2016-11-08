@@ -43,7 +43,7 @@ namespace SimpleBlackBoard.Business_Layer
                 if (AssignmentManager.AddAssigment(assignment, out errorMessage)==true)
                 {
                     var fileName = (assignment.Student_ID).ToString() + ".html";
-                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/App_Data/Assignments"), fileName);
+                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Assignments"), fileName);
                     file.SaveAs(path);
 
                     StudentManager.UpdateUploaded(assignment, out errorMessage);
