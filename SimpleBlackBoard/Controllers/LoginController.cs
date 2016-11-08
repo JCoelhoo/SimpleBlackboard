@@ -19,8 +19,11 @@ namespace SimpleBlackBoard.Controllers
         [Route("Login")]
         [Route("")]
         [HttpGet]
-        public ViewResult Login(string errorMessage)
+        public ActionResult Login(string errorMessage)
         {
+            if (Session["IsStudent"] != null)
+                return RedirectToAction("Manager", "Dashboard");
+
             ViewBag.Error = errorMessage;
             return View();
         }
@@ -30,9 +33,6 @@ namespace SimpleBlackBoard.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {
-            if (Session["IsStudent"] != null)
-                return RedirectToAction("Manager", "Dashboard");
-
             string errorMessage = String.Empty;
             var status = CommonManager.Login(login, out errorMessage);
             if (status == CommonManager.LoginStatus.Lecturer){
