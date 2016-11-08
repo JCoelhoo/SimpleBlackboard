@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using SimpleBlackBoard.Models;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace SimpleBlackBoard.Business_Layer
 {
@@ -70,7 +72,11 @@ namespace SimpleBlackBoard.Business_Layer
                     {
                         if (record.Email!=null)
                         {
-                            if(record.Email.Equals(log.Email) && record.Password.Equals(log.Password))
+                            var sha = new SHA1CryptoServiceProvider();
+                            var record_password = Encoding.ASCII.GetBytes(log.Password);    // Hashing the password to compare to hashed password in db
+                            var result_password = Encoding.Default.GetString(sha.ComputeHash(record_password));
+                            
+                            if (record.Email.Equals(log.Email) && result_password.Equals(record.Password))
                             {
                                 if(record.Role_ID == true )
                                 {

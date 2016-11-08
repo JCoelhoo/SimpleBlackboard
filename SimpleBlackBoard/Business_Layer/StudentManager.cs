@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using SimpleBlackBoard.Models;
+using System.Security.Cryptography;
 
 namespace SimpleBlackBoard.Business_Layer
 {
@@ -63,6 +64,9 @@ namespace SimpleBlackBoard.Business_Layer
                     using (var context = new SchoolContext())
                     {
                         studentObj.Lecturer_ID = selectedLecturerID; //assign random lecturer
+                        var sha = new SHA1CryptoServiceProvider();
+                        var password = Encoding.ASCII.GetBytes(studentObj.Password);    // Hashing the password Backend
+                        studentObj.Password = Encoding.Default.GetString(sha.ComputeHash(password));     //
                         context.Students.Add(studentObj);
                         context.SaveChanges();
                         errorMessage = "";
