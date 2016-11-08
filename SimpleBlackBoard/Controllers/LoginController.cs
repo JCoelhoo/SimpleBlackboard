@@ -30,17 +30,22 @@ namespace SimpleBlackBoard.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {
+            if (Session["IsStudent"] != null)
+                return RedirectToAction("Dashboard", "Dashboard");
+
             string errorMessage = String.Empty;
             var status = CommonManager.Login(login, out errorMessage);
             if (status == CommonManager.LoginStatus.Lecturer){
                 Session["IsStudent"] = false;
                 Session["Email"] = login.Email;
                 Session["TimeOfCreation"] = DateTime.Now;
+                Session["Id"] = LecturerManager.GetLecturerIdByEmail(login.Email);
                 return RedirectToAction("Manager", "Dashboard");
             } else if (status == CommonManager.LoginStatus.Student) { 
                 Session["IsStudent"] = true;
                 Session["Email"] = login.Email;
                 Session["TimeOfCreation"] = DateTime.Now;
+                Session["Id"] = StudentManager.GetStudentIdByEmail(login.Email);
                 return RedirectToAction("Manager", "Dashboard");
             }
 

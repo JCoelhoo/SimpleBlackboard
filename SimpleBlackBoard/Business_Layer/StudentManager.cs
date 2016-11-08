@@ -142,28 +142,39 @@ namespace SimpleBlackBoard.Business_Layer
             }
         }
 
-        public static bool Login(Login login)
+        public static int GetStudentIdByEmail(string email)
+        {
+            try
+            {
+                using (var context = new SchoolContext())
+                {
+                    int studentResult = (from student in context.Students
+                                          where student.Email == email
+                                          select student.Student_ID).FirstOrDefault();
+                    return studentResult == null ? -1 : studentResult;
+                }
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+
+        public static int? GetLecturerIdByStudentID (int studentId)
         {
             try
             {
                 using (var context = new SchoolContext())
                 {
                     var studentResult = (from student in context.Students
-                                          where student.Email == login.Email
-                                          select student).FirstOrDefault();
-                    if (studentResult != null)
-                    {
-                        if (!studentResult.Password.Equals(login.Password))
-                            return false;
-                        else
-                            return true;
-                    }
-                    return false;
+                                         where student.Student_ID == studentId
+                                         select student.Lecturer_ID).FirstOrDefault();
+                    return studentResult == null ? -1 : studentResult;
                 }
             }
             catch (Exception e)
             {
-                return false;
+                return -1;
             }
         }
     }

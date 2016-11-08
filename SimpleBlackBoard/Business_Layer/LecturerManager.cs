@@ -93,28 +93,21 @@ namespace SimpleBlackBoard.Business_Layer
             
         }
 
-        public static bool Login(Login login)
+        public static int GetLecturerIdByEmail(string email)
         {
             try
             {
                 using (var context = new SchoolContext())
                 {
-                    var lecturerResult = (from lecturer in context.Lecturers
-                                          where lecturer.Email == login.Email
-                                          select lecturer).FirstOrDefault();
-                    if (lecturerResult != null)
-                    {
-                        if (!lecturerResult.Password.Equals(login.Password))
-                            return false;
-                        else
-                            return true;
-                    }
-                    return false;
+                    int lecturerResult = (from lecturer in context.Lecturers
+                                         where lecturer.Email == email
+                                         select lecturer.Lecturer_ID).FirstOrDefault();
+                    return lecturerResult == null ? -1 : lecturerResult;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return false;
+                return -1;
             }
         }
         

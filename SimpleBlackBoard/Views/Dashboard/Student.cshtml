@@ -11,17 +11,25 @@
         <span class="help-inline">Already uploaded</span>
     }
     else {
-        <button type="button" class="btn btn-primary">Upload</button>
+        <a href="Dashboard/Upload" class="btn btn-primary" role="button" aria-pressed="true">Upload</a>
     }
 
     <br /> <br />
-    
+
     @if (@ViewBag.Evaluated)
     {
-        <button type="button" class="btn btn-primary disabled">View assignment</button>
+        <a href="Dashboard/Grade" class="btn btn-primary" role="button" aria-pressed="true">View assignment</a>
     }
     else {
-        <button type="button" class="btn btn-primary">View assignment</button>
-        <span class="help-inline">Not yet evaluated</span>
+        <button type="button" class="btn btn-primary disabled">View assignment</button>
+            <span class="help-inline">Not yet evaluated</span>
+    }
+
+    @if (@ViewBag.Message != null || @ViewBag.Message != "")
+            {
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @ViewBag.Error
+        </div>
     }
 </div>

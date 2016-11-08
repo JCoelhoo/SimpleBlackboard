@@ -42,28 +42,19 @@ namespace SimpleBlackBoard.Business_Layer
             {
                 AddAssigment(assignment, out errorMessage);
 
-                if (Path.GetExtension(file.FileName) != "html")
-                {
-                    errorMessage = "Invalid file type";
-                    return false;
-                }
+                var fileName = (assignment.Student_ID).ToString() + ".html";
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/App_Data/Assignments"), fileName);
+                file.SaveAs(path);
 
-                if (file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(String.Format("{1}.html", assignment.Student_ID));
-                    var path = "./Assignments/" + fileName;
-                    file.SaveAs(path);
-                }
-                
                 //after uploading create assignment
                 if (AssignmentManager.AddAssigment(assignment, out errorMessage)==true)
                 {
                     StudentManager.UpdateUploaded(assignment, out errorMessage);
                     errorMessage = "";
                     return true;
-                    
                 }
-                errorMessage = "Assignment Record wasnt Created!";
+
+                errorMessage = "Assignment Record wasn't Created!";
                 return false;
             }
             catch (Exception e)
@@ -130,7 +121,7 @@ namespace SimpleBlackBoard.Business_Layer
                 }
             }
         }
-        public static Boolean CheckUploaded(int? student_id,out string errorMessage)
+        public static Boolean CheckUploaded(int? student_id, out string errorMessage)
         {
             try
             {
