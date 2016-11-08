@@ -31,7 +31,7 @@ namespace SimpleBlackBoard.Models
 
         [Column("Grade")]
         [Range(0, 5, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
-        public double? Grade { get; set; }
+        public int Grade { get; set; }
 
         [Column("Feedback")]
         [MaxLength(200)]

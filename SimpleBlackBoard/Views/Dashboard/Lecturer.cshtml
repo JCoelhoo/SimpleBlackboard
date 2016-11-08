@@ -18,7 +18,14 @@
                     <p style="display:inline">Student ID: @assignment.Student_ID</p>
                     <form method="get" action="~/Grade/@assignment.Student_ID" style="display:inline">
                         <span class="pull-right">
-                            <button class="btn btn-default">Grade</button>
+                            @if (assignment.Grade == 0)
+                            {
+                                <button class="btn btn-default">Grade</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-default disabled" disabled>Graded</button>
+                            }
                         </span>
                     </form>
                 </li>

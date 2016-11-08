@@ -18,21 +18,26 @@ namespace SimpleBlackBoard.Controllers
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
 
-            var assignment = AssignmentManager.GetAssignmentByStudentId(id);
-
-            ViewBag.Assignment = assignment;
-
-            ViewBag.Title = "Grade";
+            ViewBag.Student_ID = id;
 
             return View();
         }
 
         [Route("Grade")]
         [HttpPost]
-        public ActionResult Grade(Assignment assignment)
+        public ActionResult Grade(Assignment partialAssignment, int id)
         {
-            assignment = assignment;
-            return null;
+            var assignment = AssignmentManager.GetAssignmentByStudentId(id);
+            string errorMessage;
+
+            assignment.Feedback = partialAssignment.Feedback;
+            assignment.Grade = partialAssignment.Grade;
+
+            AssignmentManager.GradeAssignment((int)Session["Id"],
+                assignment,
+                out errorMessage);
+
+            return RedirectToAction("Manager", "Dashboard");
         }
     }
 }

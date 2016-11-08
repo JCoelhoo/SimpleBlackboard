@@ -136,7 +136,7 @@ namespace UnitTester
         {
             string k = "";
             string feedback = "This is a unit test";
-            float grade = 90;
+            var grade = 90;
             Assignment ass = new Assignment();
             ass.Feedback = feedback;
             ass.Grade = grade;
