@@ -15,10 +15,10 @@ namespace SimpleBlackBoard.Controllers
         // GET: Dashboard
         [Route("Dashboard")]
         [HttpGet]
-        public ActionResult Manager(string message)
+        public ActionResult Manager(string message, string errorMessage)
         {
-            string errorMessage;
             ViewBag.Message = message;
+            ViewBag.Error = errorMessage;
 
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
@@ -73,7 +73,7 @@ namespace SimpleBlackBoard.Controllers
 
             var status = AssignmentManager.UploadAssignment(assignment, file, out errorMessage);
             //error message
-            return RedirectToAction("Manager", new { message = "Assignment uploaded successfully" });
+            return RedirectToAction("Manager", new { message = "Assignment uploaded successfully", errorMessage = errorMessage });
         }
     }
 }

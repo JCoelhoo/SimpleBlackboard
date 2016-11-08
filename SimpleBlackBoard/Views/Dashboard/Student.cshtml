@@ -25,11 +25,19 @@
             <span class="help-inline">Not yet evaluated</span>
     }
 
-    @if (@ViewBag.Message != null || @ViewBag.Message != "")
+    @if (@ViewBag.Message != null && @ViewBag.Message != "")
             {
         <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> @ViewBag.Error
+            <strong>Success!</strong> @ViewBag.Message
         </div>
     }
+
+    @if (@ViewBag.Error != "" && @ViewBag.Error != null)
+    {
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> @ViewBag.Error
+        </div>
+    } 
 </div>

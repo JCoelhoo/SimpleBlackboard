@@ -35,20 +35,17 @@ namespace SimpleBlackBoard.Business_Layer
             }
         }
 
-        //UploadAssignment(student_ID,assignment_ID,lecturer_ID) Post
         public static Boolean UploadAssignment(Assignment assignment, HttpPostedFileBase file, out string errorMessage)
         {
             try
             {
-                AddAssigment(assignment, out errorMessage);
-
-                var fileName = (assignment.Student_ID).ToString() + ".html";
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/App_Data/Assignments"), fileName);
-                file.SaveAs(path);
-
                 //after uploading create assignment
                 if (AssignmentManager.AddAssigment(assignment, out errorMessage)==true)
                 {
+                    var fileName = (assignment.Student_ID).ToString() + ".html";
+                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/App_Data/Assignments"), fileName);
+                    file.SaveAs(path);
+
                     StudentManager.UpdateUploaded(assignment, out errorMessage);
                     errorMessage = "";
                     return true;
