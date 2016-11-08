@@ -44,7 +44,7 @@ namespace SimpleBlackBoard.Models
         [Column("Role_ID")]
         [Required]
         [DefaultValue("false")]
-        public bool Role_ID { get; set; } 
+        public bool Role_ID { get; set; } = false; 
 
 
         public virtual Lecturer Lecturer { get; set; }

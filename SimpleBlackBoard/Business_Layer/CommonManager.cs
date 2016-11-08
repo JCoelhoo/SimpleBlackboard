@@ -9,7 +9,7 @@ namespace SimpleBlackBoard.Business_Layer
 {
     public class CommonManager
     {
-        public enum loginStatus {Lecturer, Student,DoesntExist,Fail};
+        public enum LoginStatus {Lecturer, Student,DoesntExist,Fail};
         public static Boolean CheckExistingEmail(String email, out string errorMessage)
         {
             try
@@ -43,7 +43,7 @@ namespace SimpleBlackBoard.Business_Layer
                 return false; //db error
             }
         }
-        public static loginStatus Login(Login log, out string ErrorMessage)
+        public static LoginStatus Login(Login log, out string ErrorMessage)
         {
            try
            {
@@ -75,24 +75,21 @@ namespace SimpleBlackBoard.Business_Layer
                                 if(record.Role_ID == true )
                                 {
                                     ErrorMessage = "";
-                                    return loginStatus.Student;
+                                    return LoginStatus.Lecturer;
                                 }
                                 ErrorMessage = "";
-                                return loginStatus.Lecturer;
+                                return LoginStatus.Student;
                             }
                         }
                     }
                     ErrorMessage = "";
-                    return loginStatus.DoesntExist;
-                  
-                    
-
+                    return LoginStatus.DoesntExist;
                 }
            }
            catch(Exception)
            {
                 ErrorMessage = "Database Error";
-                return loginStatus.Fail;
+                return LoginStatus.Fail;
             }
         }
     }

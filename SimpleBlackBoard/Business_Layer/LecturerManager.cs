@@ -92,6 +92,31 @@ namespace SimpleBlackBoard.Business_Layer
             }
             
         }
+
+        public static bool Login(Login login)
+        {
+            try
+            {
+                using (var context = new SchoolContext())
+                {
+                    var lecturerResult = (from lecturer in context.Lecturers
+                                          where lecturer.Email == login.Email
+                                          select lecturer).FirstOrDefault();
+                    if (lecturerResult != null)
+                    {
+                        if (!lecturerResult.Password.Equals(login.Password))
+                            return false;
+                        else
+                            return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         
     }
 }

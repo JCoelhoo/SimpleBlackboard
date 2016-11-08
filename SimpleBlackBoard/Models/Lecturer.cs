@@ -35,7 +35,7 @@ namespace SimpleBlackBoard.Models
         [Column("Role_ID")]
         [Required]
         [DefaultValue("true")]
-        public bool Role_ID { get; set; }
+        public bool Role_ID { get; set; } = true;
     }
    
 }

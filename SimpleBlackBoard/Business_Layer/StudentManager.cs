@@ -141,6 +141,31 @@ namespace SimpleBlackBoard.Business_Layer
                 errorMessage = "Database Error";
             }
         }
+
+        public static bool Login(Login login)
+        {
+            try
+            {
+                using (var context = new SchoolContext())
+                {
+                    var studentResult = (from student in context.Students
+                                          where student.Email == login.Email
+                                          select student).FirstOrDefault();
+                    if (studentResult != null)
+                    {
+                        if (!studentResult.Password.Equals(login.Password))
+                            return false;
+                        else
+                            return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 
 

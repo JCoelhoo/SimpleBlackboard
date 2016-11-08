@@ -19,7 +19,7 @@ namespace SimpleBlackBoard.Controllers
             string errorMessage;
             //id from session?
             if (Session["IsStudent"] == null)
-                return View("Login");
+                return RedirectToAction("Login", "Login");
 
             if ((bool)Session["IsStudent"])
             {

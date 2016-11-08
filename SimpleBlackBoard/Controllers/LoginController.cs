@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace SimpleBlackBoard.Controllers
 {
@@ -30,18 +31,30 @@ namespace SimpleBlackBoard.Controllers
         public ActionResult Login(Login login)
         {
             string errorMessage = String.Empty;
-            //if(LecturerManager.Login()){
+            var status = CommonManager.Login(login, out errorMessage);
+            if (status == CommonManager.LoginStatus.Lecturer){
                 Session["IsStudent"] = false;
                 Session["Email"] = login.Email;
                 return RedirectToAction("Manager", "Dashboard");
-            //} else (Student.Login()) 
+            } else if (status == CommonManager.LoginStatus.Student) { 
                 Session["IsStudent"] = true;
                 Session["Email"] = login.Email;
                 return RedirectToAction("Manager", "Dashboard");
-            //}
+            }
 
-            ViewBag.Error = errorMessage;
-            return RedirectToAction("Login", new { errorMessage = errorMessage });
+            if (errorMessage != "") ViewBag.Error = errorMessage;
+            else if (status == CommonManager.LoginStatus.DoesntExist) ViewBag.Error = "Invalid credentials";
+
+            return RedirectToAction("Login", new { errorMessage = ViewBag.Error });
+        }
+
+        [Route("logout")]
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Login");
         }
     }
 }
