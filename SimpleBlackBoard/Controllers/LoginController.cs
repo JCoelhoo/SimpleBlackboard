@@ -35,10 +35,12 @@ namespace SimpleBlackBoard.Controllers
             if (status == CommonManager.LoginStatus.Lecturer){
                 Session["IsStudent"] = false;
                 Session["Email"] = login.Email;
+                Session["TimeOfCreation"] = DateTime.Now;
                 return RedirectToAction("Manager", "Dashboard");
             } else if (status == CommonManager.LoginStatus.Student) { 
                 Session["IsStudent"] = true;
                 Session["Email"] = login.Email;
+                Session["TimeOfCreation"] = DateTime.Now;
                 return RedirectToAction("Manager", "Dashboard");
             }
 
