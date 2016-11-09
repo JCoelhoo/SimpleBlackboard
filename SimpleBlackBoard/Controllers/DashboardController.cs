@@ -56,6 +56,11 @@ namespace SimpleBlackBoard.Controllers
                 return RedirectToAction("Login", "Login");
 
             string errorMessage;
+
+            if (AssignmentManager.CheckUploaded((int)Session["Id"], out errorMessage))
+                return RedirectToAction("Manager", "Dashboard");
+
+
             if (file == null || file.ContentLength <= 0)
             {
                 errorMessage = "File is empty";
@@ -82,6 +87,20 @@ namespace SimpleBlackBoard.Controllers
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
+
+            string errorMessage = "";
+
+            var assignments = AssignmentManager.getAssignmentsByLecturerId(id, out errorMessage);
+
+            var v = (from asst in assignments
+                     where asst.Student_ID == id
+                     select asst).FirstOrDefault();
+
+            if (v == null || errorMessage != "")
+                return HttpNotFound();
+
+            if (v.Grade != 0)
+                return RedirectToAction("Manager", "Dashboard");
 
             ViewBag.Student_ID = id;
 
@@ -111,6 +130,11 @@ namespace SimpleBlackBoard.Controllers
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
+
+            string errorMessage;
+
+            if (!AssignmentManager.CheckGraded((int)Session["Id"], out errorMessage))
+                return RedirectToAction("Manager", "Dashboard");
 
             var assignment = AssignmentManager.GetAssignmentByStudentId((int) Session["Id"]);
 
