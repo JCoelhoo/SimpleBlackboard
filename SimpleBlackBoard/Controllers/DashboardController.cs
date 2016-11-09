@@ -44,6 +44,10 @@ namespace SimpleBlackBoard.Controllers
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
 
+            string error;
+            if (AssignmentManager.CheckUploaded((int)Session["Id"], out error))
+                return RedirectToAction("Manager", "Dashboard");
+
             ViewBag.Error = errorMessage;
             return View();
         }
@@ -56,10 +60,6 @@ namespace SimpleBlackBoard.Controllers
                 return RedirectToAction("Login", "Login");
 
             string errorMessage;
-
-            if (AssignmentManager.CheckUploaded((int)Session["Id"], out errorMessage))
-                return RedirectToAction("Manager", "Dashboard");
-
 
             if (file == null || file.ContentLength <= 0)
             {
