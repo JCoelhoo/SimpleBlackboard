@@ -42,8 +42,9 @@ namespace SimpleBlackBoard.Business_Layer
                 //after uploading create assignment
                 if (AssignmentManager.AddAssigment(assignment, out errorMessage)==true)
                 {
+                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Content/Assignments")); //create directory if it doesnt exist
                     var fileName = (assignment.Student_ID).ToString() + ".html";
-                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Assignments"), fileName);
+                    var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Assignments"), fileName);
                     file.SaveAs(path);
 
                     StudentManager.UpdateUploaded(assignment, out errorMessage);

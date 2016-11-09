@@ -72,9 +72,9 @@ namespace SimpleBlackBoard.Business_Layer
                     {
                         if (record.Email!=null)
                         {
-                            var sha = new SHA1CryptoServiceProvider();
-                            var record_password = Encoding.ASCII.GetBytes(log.Password);    // Hashing the password to compare to hashed password in db
-                            var result_password = Encoding.Default.GetString(sha.ComputeHash(record_password));
+                            //var sha = new SHA1CryptoServiceProvider();
+                            //var record_password = Encoding.ASCII.GetBytes(log.Password);    // Hashing the password to compare to hashed password in db
+                            var result_password = Hash(log.Password);
                             
                             if (record.Email.Equals(log.Email) && result_password.Equals(record.Password))
                             {
@@ -96,6 +96,23 @@ namespace SimpleBlackBoard.Business_Layer
            {
                 ErrorMessage = "Database Error";
                 return LoginStatus.Fail;
+            }
+        }
+
+        public static string Hash(string input)
+        {
+            using (SHA1Managed sha1 = new SHA1Managed())
+            {
+                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("X2"));
+                }
+
+                return sb.ToString();
             }
         }
     }

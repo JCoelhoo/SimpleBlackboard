@@ -45,9 +45,10 @@ namespace SimpleBlackBoard.Business_Layer
                 {
                     using (var context = new SchoolContext())
                     {
-                        var sha = new SHA1CryptoServiceProvider();
-                        var password = Encoding.ASCII.GetBytes(lecturer.Password);    // Hashing the password Backend
-                        lecturer.Password = Encoding.Default.GetString(sha.ComputeHash(password));
+                        //var sha = new SHA1CryptoServiceProvider();
+                        //var password = Encoding.ASCII.GetBytes(lecturer.Password);    
+                        //lecturer.Password = Encoding.Default.GetString(sha.ComputeHash(password));
+                        lecturer.Password = CommonManager.Hash(lecturer.Password);
                         context.Lecturers.Add(lecturer);
                         context.SaveChanges();
                         errorMessage = "";
