@@ -44,7 +44,7 @@ namespace SimpleBlackBoard.Controllers
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
 
-            ViewBag.ErrorMessage = errorMessage;
+            ViewBag.Error = errorMessage;
             return View();
         }
 
