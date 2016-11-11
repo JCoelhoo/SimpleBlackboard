@@ -160,7 +160,7 @@ namespace SimpleBlackBoard.Business_Layer
                         errorMessage = "";
                         return true;
                     }
-                    errorMessage = "Your assignment isn't yet graded!";
+                    errorMessage = "Your assignment has yet to be graded!";
                     return false;
                 }
             }
