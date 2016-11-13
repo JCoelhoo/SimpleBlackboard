@@ -24,7 +24,7 @@ namespace SimpleBlackBoard.Business_Layer
                                           select assignment).FirstOrDefault();
                     editAssingment.Feedback = Assignment.Feedback;
                     editAssingment.Grade = Assignment.Grade;
-                    editAssingment.Status_ID = 2;
+                    editAssingment.Status_ID = 1;
                     context.SaveChanges();
                     errorMessage = "";
                 }

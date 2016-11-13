@@ -73,7 +73,7 @@ namespace SimpleBlackBoard.Controllers
             }
 
             var assignment = new Assignment { Student_ID = (int)Session["Id"],
-                Status_ID = 0,
+                Status_ID = 0, Feedback="",
                 Lecturer_ID = StudentManager.GetLecturerIdByStudentID((int)Session["Id"]) };
 
             var status = AssignmentManager.UploadAssignment(assignment, file, out errorMessage);
@@ -90,7 +90,7 @@ namespace SimpleBlackBoard.Controllers
 
             string errorMessage = "";
 
-            var assignments = AssignmentManager.getAssignmentsByLecturerId(id, out errorMessage);
+            var assignments = AssignmentManager.getAssignmentsByLecturerId(Convert.ToInt32(Session["Id"]), out errorMessage);
 
             var v = (from asst in assignments
                      where asst.Student_ID == id
@@ -117,11 +117,15 @@ namespace SimpleBlackBoard.Controllers
             assignment.Feedback = partialAssignment.Feedback;
             assignment.Grade = partialAssignment.Grade;
 
-            AssignmentManager.GradeAssignment((int)Session["Id"],
-                assignment,
-                out errorMessage);
-
-            return RedirectToAction("Manager", "Dashboard");
+           
+            if(ModelState.IsValid)
+            {
+               AssignmentManager.GradeAssignment((int)Session["Id"],
+               assignment,
+               out errorMessage);
+                return RedirectToAction("Manager", "Dashboard");
+            }
+            return View();
         }
 
         [Route("Dashboard/View")]

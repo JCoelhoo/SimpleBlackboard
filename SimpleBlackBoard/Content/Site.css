@@ -16,3 +16,60 @@ textarea {
     max-width: 280px;
 }
 
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+
+select.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.center-block {
+  display: table;
+  margin: 0 auto;
+}
+.LoginHeader{
+    margin-top: 25px;
+    font-family:'MS Reference Sans Serif';
+    color:cornflowerblue;
+    font-size:20px;
+    
+}
+.h2{
+    font-size:20px;
+    
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  
+}
+#Feedback{
+    width:250px;
+    height:80px;
+}

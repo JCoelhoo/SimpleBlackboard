@@ -3,7 +3,10 @@
     ViewBag.Title = "Grade";
 }
 
-<h2>Grade</h2>
+
+<div class="row LoginHeader text-center">
+    <h2>Grade</h2>
+</div>
 
 <div class="assignment-display">
     <div class="embed-responsive embed-responsive-16by9">
@@ -16,22 +19,31 @@
 
     @using (@Html.BeginForm("Grade", "Grade", new { id = @ViewBag.Id }, FormMethod.Post))
     {
-        @Html.LabelFor(model => @Model.Student_ID)  <h6>@ViewBag.Student_ID</h6>
+        
+        @*@Html.LabelFor(model => @Model.Student_ID)  <h6>@ViewBag.Student_ID</h6>*@
 
-        @Html.LabelFor(model => model.Grade)
+        <span style="color:green">@Html.LabelFor(model => model.Grade)</span>
+        @Html.ValidationMessageFor(model => model.Grade)
         <br />
-        @Html.RadioButtonFor(model => @Model.Grade, 1) <p style="display:inline">  1  </p>
-        @Html.RadioButtonFor(model => @Model.Grade, 2) <p style="display:inline">  2  </p>
-        @Html.RadioButtonFor(model => @Model.Grade, 3) <p style="display:inline">  3  </p>
-        @Html.RadioButtonFor(model => @Model.Grade, 4) <p style="display:inline">  4  </p>
-        @Html.RadioButtonFor(model => @Model.Grade, 5) <p style="display:inline">  5  </p>
+        <div class="row">
+            <div class="col-xs-2">@Html.RadioButtonFor(model => @Model.Grade, 1) <p style="display:inline">  1  </p></div>
+            
+            <div class="col-xs-2">@Html.RadioButtonFor(model => @Model.Grade, 2) <p style="display:inline">  2  </p></div>
+            <div class="col-xs-2">@Html.RadioButtonFor(model => @Model.Grade, 3) <p style="display:inline">  3  </p></div>
+            <div class="col-xs-2">@Html.RadioButtonFor(model => @Model.Grade, 4) <p style="display:inline">  4  </p></div>
+            <div class="col-xs-2">@Html.RadioButtonFor(model => @Model.Grade, 5) <p style="display:inline">  5  </p></div>
+          </div>
         <br />
-        @Html.LabelFor(model => model.Feedback)
+        <span style="color:green">
+            @Html.LabelFor(model => model.Feedback)
+        </span>
         <br />
-        @Html.EditorFor(model => model.Feedback, new { @class = "", @cols = 200, @rows = 30 })
+        @Html.EditorFor(model => model.Feedback, new { @class = "", @cols = 200, @rows = 30 })<br />
+        @Html.ValidationMessageFor(model => model.Feedback)
         <br />
-
+        
+        <input type="submit" value="Grade" class="btn btn-success" />
         <br />
-        <input type="submit" value="Grade" />
-    }
+        @Html.ValidationSummary()
+        }
 </div>

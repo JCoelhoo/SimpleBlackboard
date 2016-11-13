@@ -2,24 +2,53 @@
 @{
     ViewBag.Title = "Upload";
 }
+<script>
+    $(document).ready(
 
-<h2>Upload</h2>
+    function () {
 
-<form action="Upload" method="post" enctype="multipart/form-data">
+        $('input:file').change(
+            function () {               
+                if ($(this).val()) {
+                    $('input:submit').attr('disabled', false);
+                    // or, as has been pointed out elsewhere:
+                    // $('input:submit').removeAttr('disabled'); 
+                }
+            }
+            );
+    });
+</script>
 
-    <label for="file">Filename:</label>
-    <input type="file" name="file" id="file" />
+<div class="row LoginHeader text-center">
 
-    <input type="submit" />
+    <h2>Upload</h2>
+</div>
+
+<div class="row" style="margin-top:25px">
+    <form action="Upload" method="post" enctype="multipart/form-data">
+        <div class="row text-center">
+            <div class="col-xs-offset-4">
+                <input type="file" name="file" id="file" accept=".html" />
+            </div>
+        </div>
+        <br />
+        <br/>
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <input class="btn btn-primary" type="submit" value="submit" disabled />
+                </div>
+            </div>
 </form>
 
-<br />
-
-@if (@ViewBag.Error != "" && @ViewBag.Error != null)
-{
-    <div class="alert alert-danger fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Error!</strong> @ViewBag.Error
-    </div>
-} 
+    <br /><br />
+    <br /><br />
+    @if (@ViewBag.Error != "" && @ViewBag.Error != null)
+    {
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> @ViewBag.Error
+        </div>
+    }
+</div>
+    
 

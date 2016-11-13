@@ -30,13 +30,15 @@ namespace SimpleBlackBoard.Models
         public virtual int? Lecturer_ID { get; set; }
 
         [Column("Grade")]
+        
         [Range(0, 5, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int Grade { get; set; }
 
         [Column("Feedback")]
-        [MaxLength(200)]
+        [Required(AllowEmptyStrings = true)]
+        [StringLength(200, ErrorMessage = "Feedback should be between 0 and 200 characters")]
         [DataType(DataType.MultilineText)]
-        public String Feedback { get; set; }
+        public string Feedback { get; set; }
 
         [Required]
         [Column("Status_ID")]

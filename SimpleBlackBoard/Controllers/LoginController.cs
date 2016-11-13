@@ -40,13 +40,21 @@ namespace SimpleBlackBoard.Controllers
                 Session["Email"] = login.Email;
                 Session["TimeOfCreation"] = DateTime.Now;
                 Session["Id"] = LecturerManager.GetLecturerIdByEmail(login.Email);
-                return RedirectToAction("Manager", "Dashboard");
+                if(ModelState.IsValid)
+                {
+                    return RedirectToAction("Manager", "Dashboard");
+                }
+                return View();
             } else if (status == CommonManager.LoginStatus.Student) { 
                 Session["IsStudent"] = true;
                 Session["Email"] = login.Email;
                 Session["TimeOfCreation"] = DateTime.Now;
                 Session["Id"] = StudentManager.GetStudentIdByEmail(login.Email);
-                return RedirectToAction("Manager", "Dashboard");
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("Manager", "Dashboard");
+                }
+                return View();
             }
 
             if (errorMessage != "") ViewBag.Error = errorMessage;
