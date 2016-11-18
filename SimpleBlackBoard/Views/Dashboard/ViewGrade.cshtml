@@ -9,30 +9,30 @@
 
 <div class="assignment-display">
     <div class="row">
-        <div class="row text-center" style="background-color:lightgray">
+        <div class="row text-center">
             <div class="col-xs-6">
                 <h3>Your Student ID</h3>
             </div>  
-            <div class="col-xs-6">
-                <span style="font-size:34px;color:red"> @Html.DisplayFor(m => m.Student_ID)</span>
+            <div style="margin-top: 20px;" class="col-xs-6">
+                <span style="font-size:24px;color:red"> @Html.DisplayFor(m => m.Student_ID)</span>
             </div>
         </div>
         <br />
-        <div class="row text-center" style="background-color:lightgray">
+        <div class="row text-center">
             <div class="col-xs-6">
                 <h3>@Html.LabelFor(m => m.Grade)</h3>
             </div>
-            <div class="col-xs-6">
-                <span style="font-size:34px;color:red"> @Html.DisplayFor(m => m.Grade)</span>
+            <div style="margin-top: 20px;" class="col-xs-6">
+                <span style="margin-top: 35px;font-size:24px;color:red"> @Html.DisplayFor(m => m.Grade)</span>
             </div>
         </div>
         <br/>
-        <div class="row text-center" style="background-color:lightgray">
+        <div class="row text-center">
             <div class="col-xs-12">
                 <h3>@Html.LabelFor(m => m.Feedback)</h3>
             </div>
             <div class="col-xs-12">
-                <span style="font-size:12px;color:red;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"> @Html.DisplayFor(m => m.Feedback)</span>
+                <span style="display:block;width:400px;word-wrap:break-word;font-size:12px;color:red;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"> @Html.DisplayFor(m => m.Feedback)</span>
             </div>
         </div>
         

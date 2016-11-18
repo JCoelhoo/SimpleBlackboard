@@ -13,12 +13,12 @@
     <div class="col-xs-6">
         @if (@ViewBag.Uploaded)
         {
-            <button type="button" class="btn btn-primary disabled" disabled>Upload</button>          
+            <button style="margin-left: 35px;" type="button" class="btn btn-primary disabled" disabled>Upload</button>          
             <div class="col-xs-12"><span class="help-inline text-center" style="color:red">Already uploaded</span></div>
         }
         else
         {
-            <a href="~/Dashboard/Upload" class="btn btn-primary" role="button" aria-pressed="true">Upload</a>
+            <div><a href="~/Dashboard/Upload" style="margin-left: 35px;" class="btn btn-primary" role="button" aria-pressed="true">Upload</a></div>
         }
     </div>
     <div class="col-xs-6">

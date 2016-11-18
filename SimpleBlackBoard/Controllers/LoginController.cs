@@ -35,26 +35,21 @@ namespace SimpleBlackBoard.Controllers
         {
             string errorMessage = String.Empty;
             var status = CommonManager.Login(login, out errorMessage);
-            if (status == CommonManager.LoginStatus.Lecturer){
+            if (!ModelState.IsValid)
+            {
+                return View();
+            } else if (status == CommonManager.LoginStatus.Lecturer) {
                 Session["IsStudent"] = false;
                 Session["Email"] = login.Email;
                 Session["TimeOfCreation"] = DateTime.Now;
                 Session["Id"] = LecturerManager.GetLecturerIdByEmail(login.Email);
-                if(ModelState.IsValid)
-                {
-                    return RedirectToAction("Manager", "Dashboard");
-                }
-                return View();
+                return RedirectToAction("Manager", "Dashboard");
             } else if (status == CommonManager.LoginStatus.Student) { 
                 Session["IsStudent"] = true;
                 Session["Email"] = login.Email;
                 Session["TimeOfCreation"] = DateTime.Now;
                 Session["Id"] = StudentManager.GetStudentIdByEmail(login.Email);
-                if (ModelState.IsValid)
-                {
-                    return RedirectToAction("Manager", "Dashboard");
-                }
-                return View();
+                return RedirectToAction("Manager", "Dashboard");
             }
 
             if (errorMessage != "") ViewBag.Error = errorMessage;
