@@ -71,9 +71,7 @@ namespace SimpleBlackBoard.Business_Layer
                     foreach (var record in allResultSets)
                     {
                         if (record.Email!=null)
-                        {
-                            //var sha = new SHA1CryptoServiceProvider();
-                            //var record_password = Encoding.ASCII.GetBytes(log.Password);    // Hashing the password to compare to hashed password in db
+                        {                                             
                             var result_password = Hash(log.Password);
                             
                             if (record.Email.Equals(log.Email) && result_password.Equals(record.Password))

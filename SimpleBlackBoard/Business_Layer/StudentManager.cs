@@ -59,19 +59,19 @@ namespace SimpleBlackBoard.Business_Layer
             {
                 try
                 {
-                    int[] allLecturerIds = LecturerManager.AllLecturerIds(); //get all Lecturer Id's in array
-                    int selectedLecturerID = AssignRandomLecturer(allLecturerIds); //call helper method to randomly assign a lecturer to the student
-                    using (var context = new SchoolContext())
+                    if(studentObj.Lecturer_ID==null)
                     {
-                        studentObj.Lecturer_ID = selectedLecturerID; //assign random lecturer
-                        //var sha = new SHA1CryptoServiceProvider();
-                        //var password = Encoding.ASCII.GetBytes(studentObj.Password);    // Hashing the password Backend
-                        //studentObj.Password = Encoding.Default.GetString(sha.ComputeHash(password));     //
-                        studentObj.Password = CommonManager.Hash(studentObj.Password);
+                        int[] allLecturerIds = LecturerManager.AllLecturerIds();        //get all Lecturer Id's in array
+                        int selectedLecturerID = AssignRandomLecturer(allLecturerIds);  //call helper method to randomly assign a lecturer to the student
+                        studentObj.Lecturer_ID = selectedLecturerID;                    //assign random lecturer
+                    }
+                    studentObj.Password = CommonManager.Hash(studentObj.Password);
+                    using (var context = new SchoolContext())
+                    {       
                         context.Students.Add(studentObj);
                         context.SaveChanges();
                         errorMessage = "";
-                        return true; //Worked
+                        return true; 
                     }
                 }
                 catch (Exception e)
