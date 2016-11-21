@@ -19,7 +19,7 @@
 
             @foreach (var assignment in @ViewBag.Assignments)
             {
-                <li class="list-group-item clearfix">
+                <li class="list-group-item clearfix" sstyle="vertical-align: middle;">
                     <p style="display:inline">Student ID: @assignment.Student_ID</p>
                     <form method="get" action="~/Dashboard/Grade/@assignment.Student_ID" style="display:inline">
                         <span class="pull-right">

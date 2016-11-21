@@ -43,6 +43,8 @@ namespace SimpleBlackBoard.Controllers
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
+            else if (!(bool)Session["IsStudent"])
+                return RedirectToAction("Manager", "Dashboard");
 
             string error;
             if (AssignmentManager.CheckUploaded((int)Session["Id"], out error))
@@ -58,6 +60,8 @@ namespace SimpleBlackBoard.Controllers
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
+            else if (!(bool)Session["IsStudent"])
+                return RedirectToAction("Manager", "Dashboard");
 
             string errorMessage;
 
@@ -87,6 +91,8 @@ namespace SimpleBlackBoard.Controllers
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
+            else if ((bool)Session["IsStudent"])
+                return RedirectToAction("Manager", "Dashboard");
 
             string errorMessage = "";
 
@@ -97,7 +103,7 @@ namespace SimpleBlackBoard.Controllers
                      select asst).FirstOrDefault();
 
             if (v == null || errorMessage != "")
-                return HttpNotFound();
+                return RedirectToAction("Manager", "Dashboard");
 
             if (v.Grade != 0)
                 return RedirectToAction("Manager", "Dashboard");
@@ -111,6 +117,9 @@ namespace SimpleBlackBoard.Controllers
         [HttpPost]
         public ActionResult Grade(Assignment partialAssignment, int id)
         {
+            if ((bool)Session["IsStudent"])
+                return RedirectToAction("Manager", "Dashboard");
+
             var assignment = AssignmentManager.GetAssignmentByStudentId(id);
             string errorMessage;
 
@@ -134,6 +143,8 @@ namespace SimpleBlackBoard.Controllers
         {
             if (Session["IsStudent"] == null)
                 return RedirectToAction("Login", "Login");
+            else if (!(bool) Session["IsStudent"])
+                return RedirectToAction("Manager", "Dashboard");
 
             string errorMessage;
 
