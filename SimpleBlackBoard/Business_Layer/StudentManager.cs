@@ -45,7 +45,6 @@ namespace SimpleBlackBoard.Business_Layer
             catch(Exception e)
             {
                 //log error 
-                Console.Write(e);
                 return null;
             }
             

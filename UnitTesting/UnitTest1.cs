@@ -9,26 +9,21 @@ namespace UnitTesting
     [TestFixture]
     public class SimpleBlackBoard
     {
-        [TestCase]
+        [Test]
         public static void GetStudentsByLecturer()
         {
             List<Student> test = StudentManager.GetStudentsByLecturerId(1);
-            foreach (var t in test)
-            {
-                Console.WriteLine(t.Student_ID + " " + t.Name);
-            }
-            Assert.Equals("1", "1");
+            Assert.NotNull(test);
+            Assert.Equals(test.Count, 2);
         }
 
         [Test]
         public static void getLecturerIdList()
         {
             int[] test = LecturerManager.AllLecturerIds();
-            foreach (var lecid in test)
-            {
-                Console.WriteLine(lecid);
-            }
-
+            Assert.NotNull(test);
+            Assert.Equals(test.Length, 3);
+            Assert.NotNull(Array.FindIndex(test, x => x == 1));
         }
 
         [Test]
@@ -36,7 +31,8 @@ namespace UnitTesting
         {
             int[] test = new int[] { 12, 14, 15 };
             int rnd = StudentManager.AssignRandomLecturer(test);
-            Console.WriteLine(rnd);
+            Assert.NotNull(rnd);
+            Assert.True(rnd == 12 || rnd == 14 || rnd == 15);
         }
 
         [Test]
@@ -51,15 +47,21 @@ namespace UnitTesting
             newStudent.Email = "lala@lala.com";
             newStudent.Password = "231231";
             newStudent.Uploaded = false;
-            //newStudent.Lecturer_ID = 3;
-            bool b = StudentManager.AddStudent(newStudent, out k);
-            Console.Write(b + " " + k);
+            newStudent.Lecturer_ID = 3;
+            Assert.True(StudentManager.AddStudent(newStudent, out k));
+
+            var student = StudentManager.GetStudentById(6);
+            Assert.Equals(student.Name, "testInsert");
+            Assert.Equals(student.Email, "lala@lala.com");
+            Assert.Equals(student.Password, "231231");
+            Assert.Equals(student.Lecturer_ID, 3);
+            Assert.Equals(student.Student_ID, 6);
         }
 
         [Test]
         public static void getStudentbyID()
         {
-            Student test = StudentManager.GetStudentById(6);
+            Student test = StudentManager.GetStudentById(2);
             Console.Write(test.Lecturer_ID);
         }
 

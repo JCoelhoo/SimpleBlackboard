@@ -26,7 +26,7 @@ namespace SimpleBlackBoard
             StudentManager.AddStudent(new Student { Name = "Vanessa", Email = "v@g.com", Password = "vanessa", Lecturer_ID = 2 }, out errorMessage);
             StudentManager.AddStudent(new Student { Name = "Andre", Email = "a@g.com", Password = "andre", Lecturer_ID = 2 }, out errorMessage);
             StudentManager.AddStudent(new Student { Name = "Bernard", Email = "b@g.com", Password = "bernard", Lecturer_ID = 3 }, out errorMessage);
-            //Database.SetInitializer<SchoolContext>(null);
+            Database.SetInitializer<SchoolContext>(null);
         }
     }
 }
