@@ -11,9 +11,6 @@ namespace SimpleBlackBoard.Business_Layer
 {
     public class StudentManager
     {
-        //private BlackBoardContext BlackBoardContext;  //table
-        //private DbSet<Student> Students; //for adding
-
         public static List<Student> GetStudentsByLecturerId(int Lecturer_id)
         {
             try
