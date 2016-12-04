@@ -14,7 +14,7 @@ namespace UnitTesting
         {
             List<Student> test = StudentManager.GetStudentsByLecturerId(1);
             Assert.NotNull(test);
-            Assert.Equals(test.Count, 2);
+            Assert.IsTrue(test.Count == 2);
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace UnitTesting
         {
             int[] test = LecturerManager.AllLecturerIds();
             Assert.NotNull(test);
-            Assert.Equals(test.Length, 3);
+            Assert.IsTrue(test.Length >= 3);
             Assert.NotNull(Array.FindIndex(test, x => x == 1));
         }
 
@@ -32,7 +32,7 @@ namespace UnitTesting
             int[] test = new int[] { 12, 14, 15 };
             int rnd = StudentManager.AssignRandomLecturer(test);
             Assert.NotNull(rnd);
-            Assert.True(rnd == 12 || rnd == 14 || rnd == 15);
+            Assert.IsTrue(rnd == 12 || rnd == 14 || rnd == 15);
         }
 
         [Test]
@@ -41,50 +41,58 @@ namespace UnitTesting
             //This Returns Db problem since we cant add a lecture id since its a foreignkey.
             //if we comment this line newStudent.Lecturer_ID = 3; in this case it works
             //try inserting the same user with same email, doesnt work.
-            String k = "";
+            var str = DateTime.Now.ToLongTimeString();
+            var k = "";
             var newStudent = new Student();
             newStudent.Name = "testInsert";
-            newStudent.Email = "lala@lala.com";
+            newStudent.Email = "test@email.com" + str; //to allow multiple tests to be done
             newStudent.Password = "231231";
             newStudent.Uploaded = false;
             newStudent.Lecturer_ID = 3;
-            Assert.True(StudentManager.AddStudent(newStudent, out k));
+            Assert.IsTrue(StudentManager.AddStudent(newStudent, out k));
 
-            var student = StudentManager.GetStudentById(6);
-            Assert.Equals(student.Name, "testInsert");
-            Assert.Equals(student.Email, "lala@lala.com");
-            Assert.Equals(student.Password, "231231");
-            Assert.Equals(student.Lecturer_ID, 3);
-            Assert.Equals(student.Student_ID, 6);
+            var student = StudentManager.GetStudentById(StudentManager.GetStudentIdByEmail("test@email.com" + str));
+            Assert.IsTrue(student.Name == "testInsert");
+            Assert.IsTrue(student.Email == ("test@email.com" + str));
+            Assert.IsTrue(CommonManager.Hash("231231") == student.Password);
+            Assert.IsTrue(student.Lecturer_ID == 3);
         }
 
         [Test]
         public static void getStudentbyID()
         {
             Student test = StudentManager.GetStudentById(2);
-            Console.Write(test.Lecturer_ID);
+            Assert.IsTrue(test.Name == "Nath");
+            Assert.IsTrue(test.Email == "n@g.com");
+            Assert.IsTrue(test.Lecturer_ID == 1);
         }
 
         [Test]
         public static void AddLecturer()
         {
             String k = "";
+            var str = DateTime.Now.ToLongTimeString();
             Lecturer lec = new Lecturer();
-            lec.Email = "lala@lala.com";
-            lec.Name = "inserting through code 2";
-            lec.Password = "ebola3";
+            lec.Email = "test@lala.com" + str;
+            lec.Name = "lectest";
+            lec.Password = "123456";
             bool b = LecturerManager.AddLecturer(lec, out k);
-            Console.Write(b + " " + k);
+
+            var student = LecturerManager.getLecturerById(LecturerManager.GetLecturerIdByEmail("test@lala.com" + str));
+            Assert.IsTrue(student.Name == "lectest");
+            Assert.IsTrue(student.Email == ("test@lala.com" + str));
+            Assert.IsTrue(CommonManager.Hash("123456") == student.Password);
         }
 
         [Test]
         public static void getLecturerByID()
         {
             Lecturer lec = LecturerManager.getLecturerById(2);
-            Console.Write(lec.Lecturer_ID + " " + lec.Name);
+            Assert.IsTrue(lec.Name == "Dr. Peter");
+            Assert.IsTrue(lec.Email == "p@g.com");
         }
 
-        [Test]
+        //this test should be run with specific parameters
         public static void AddAssignment()
         {
             String k = "";
@@ -93,11 +101,15 @@ namespace UnitTesting
             ass.Student_ID = 1;
             ass.Status_ID = 1;
 
-            Boolean b = AssignmentManager.AddAssigment(ass, out k);
-            Console.Write(b + " " + k);
+            Assert.IsTrue(AssignmentManager.AddAssigment(ass, out k));
+            var assignment = AssignmentManager.GetAssignmentByStudentId(1);
+
+            Assert.IsTrue(assignment.Lecturer_ID == 1);
+            Assert.IsTrue(assignment.Student_ID == 1);
+            Assert.IsTrue(assignment.Status_ID == 1);
         }
 
-        [Test]
+        //this test should be run with specific parameters
         public static void gradeAssignment()
         {
             string k = "";
@@ -108,21 +120,31 @@ namespace UnitTesting
             ass.Grade = grade;
             ass.Asst_ID = 1;
             AssignmentManager.GradeAssignment(1, ass, out k);
+
+            var assig = AssignmentManager.GetAssignmentByStudentId(1);
+            Assert.IsTrue(assig.Feedback == feedback);
+            Assert.IsTrue(assig.Grade == grade);
         }
 
-        [Test]
+        //this test should be run with specific parameters
         public static void getAssignmentGradeById()
         {
             Assignment ass = AssignmentManager.GetAssignmentGradeById(1);
-            Console.Write(ass.Grade + " " + ass.Feedback);
+            Assert.NotNull(ass);
+            Assert.NotNull(ass.Lecturer_ID);
+            Assert.NotNull(ass.Student_ID);
         }
 
-        [Test]
+        //this test should be run with specific parameters
         public static void checkGraded()
         {
             string k = "";
-            Boolean test = AssignmentManager.CheckGraded(1, out k);
-            Console.Write(test + " " + k);
+            Assert.IsTrue(AssignmentManager.CheckGraded(1, out k));
+            var assign = AssignmentManager.GetAssignmentByStudentId(1);
+
+            Assert.IsTrue(assign.Student_ID == 1);
+            Assert.NotNull(assign.Feedback);
+            Assert.NotNull(assign.Grade);
         }
     }
 }
